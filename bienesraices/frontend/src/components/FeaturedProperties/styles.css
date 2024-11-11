@@ -1,0 +1,27 @@
+/* src/components/FeaturedProperties/FeaturedProperties.css */
+.properties-area {
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.properties-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.property-card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+
+.property-card-image {
+  height: 70%;
+  background-size: cover;
+  background-position: center;
+}
+
+  
