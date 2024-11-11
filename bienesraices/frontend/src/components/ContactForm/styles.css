@@ -1,0 +1,19 @@
+/* src/components/ContactForm/ContactForm.css */
+.contact-form {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.contact-form input, .contact-form textarea {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
