@@ -6,6 +6,7 @@ import PropertyCard from '../../components/PropertyCard/PropertyCard';
 import ImageCarousel from '../../components/ImageCarousel/ImageCarousel';
 import './styles.css';
 
+
 const Propiedades = () => {
   const [properties, setProperties] = useState([]);
   const [selectedProperty, setSelectedProperty] = useState(null);
@@ -18,7 +19,7 @@ const Propiedades = () => {
 
   const fetchProperties = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/properties'); // Asegúrate de usar la URL correcta
+      const response = await axios.get('http://localhost:5000/api/properties'); // Asegúrate de que la URL es correcta
       setProperties(response.data);
       setLoading(false);
     } catch (error) {
@@ -55,11 +56,12 @@ const Propiedades = () => {
         ))}
       </div>
       {selectedProperty && (
-        <ImageCarousel images={selectedProperty.images} onClose={handleCloseCarousel} />
+        <ImageCarousel images={[selectedProperty.imageUrl]} onClose={handleCloseCarousel} />
       )}
     </div>
   );
 };
 
 export default Propiedades;
+
 
