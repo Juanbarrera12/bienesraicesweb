@@ -1,7 +1,7 @@
 // src/components/HeroSection/HeroSection.jsx
 import React from 'react';
 import './styless.css';
-import SearchBar from '../searchbar/search-bar'; // Importa el SearchBar
+import SearchBar from '../SearchBar/SearchBar'; // Importa el SearchBar
 
 const HeroSection = ({ title, subtitle }) => (
   <div className="hero">

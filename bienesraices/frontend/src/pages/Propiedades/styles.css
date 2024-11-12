@@ -1,0 +1,12 @@
+.propiedades-page {
+    padding-top: 100px;
+    text-align: center;
+  }
+  
+  .properties-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
