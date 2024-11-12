@@ -32,7 +32,7 @@ const startServer = async () => {
 
     const PORT = process.env.PORT || 5000;
     app.listen(PORT, () => {
-      console.log(Servidor escuchando en el puerto ${PORT});
+      console.log('Servidor escuchando en el puerto ${PORT}');
     });
   } catch (error) {
     console.error('Error al iniciar el servidor:', error);
