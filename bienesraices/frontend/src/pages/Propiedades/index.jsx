@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../../components/navbar/navbar';
-import SearchBar from '../../components/SearchBar/SearchBar';
+import SearchBar from '../../components/searchbar/searchbar';
 import PropertyCard from '../../components/PropertyCard/PropertyCard';
 import ImageCarousel from '../../components/ImageCarousel/ImageCarousel';
 import './styles.css';
