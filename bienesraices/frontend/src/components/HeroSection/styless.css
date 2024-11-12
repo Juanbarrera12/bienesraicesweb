@@ -1,10 +1,9 @@
-/* src/components/HeroSection/HeroSection.css */
-
 .hero {
   height: 80vh;
   min-height: 600px;
-  background-image: url('/images/Casa-moderna-blogc-1-scaled.jpg');
+  background-image: url('/images/casa.jpg');
   background-position: center;
+  background-size: cover;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -13,6 +12,7 @@
   padding: 2rem;
 }
 
+/* Overlay */
 .hero::before {
   content: '';
   position: absolute;
@@ -20,7 +20,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5); /* Ajusta la opacidad según lo necesario */
+  z-index: 1;
 }
 
 .hero-text {
@@ -29,7 +30,6 @@
   color: #fff;
   text-align: center;
   max-width: 800px;
-  margin-bottom: 2rem;
 }
 
 .hero-text h1 {
