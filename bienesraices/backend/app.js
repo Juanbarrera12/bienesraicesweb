@@ -1,25 +1,35 @@
-// backend/app.js
 const express = require('express');
 const cors = require('cors');
-const sequelize = require('./config/database');
+const { initializeDatabase } = require('./config/database');
 const propertyRoutes = require('./routes/propertyRoutes');
+const contactRoutes = require('./routes/contactRoutes');
 require('dotenv').config();
 
 const app = express();
+
+// Middleware
 app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 
+// Rutas
+app.use('/api/properties', propertyRoutes);
+app.use('/admin/propiedades', propertyRoutes);
+app.use('/api/contact', contactRoutes);
 
-// Rutas para propiedades
-app.use('/api/properties', propertyRoutes); // Ruta general para propiedades
-app.use('/admin/propiedades', propertyRoutes); // Ruta adicional para administración
+// Inicializar base de datos y servidor
+const startServer = async () => {
+  try {
+    await initializeDatabase();
+    
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => {
+      console.log(`Servidor escuchando en el puerto ${PORT}`);
+    });
+  } catch (error) {
+    console.error('Error al iniciar el servidor:', error);
+    process.exit(1);
+  }
+};
 
-sequelize.sync().then(() => {
-  app.listen(5000, () => {
-    console.log('Servidor escuchando en el puerto 5000');
-  });
-}).catch((error) => {
-  console.error('Error al sincronizar la base de datos:', error);
-});
-
+startServer();

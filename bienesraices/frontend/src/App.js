@@ -5,6 +5,7 @@ import Propiedades from './pages/Propiedades/index.jsx';
 import Blog from './pages/Blog/index.jsx';
 import SobreNosotros from './pages/SobreNosotros/index.jsx';
 import AdministrarPropiedades from './pages/AdministrarPropiedades/index.jsx';
+import ContactForm from './pages/contact/ContactForm.jsx';
 import './App.css';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/sobre-nosotros" element={<SobreNosotros />} />
                 <Route path="/admin/propiedades" element={<AdministrarPropiedades />} />
+                <Route path="/contact" element={<ContactForm />} /> {/* Agregar la ruta para Contacto */}
             </Routes>
         </Router>
     );

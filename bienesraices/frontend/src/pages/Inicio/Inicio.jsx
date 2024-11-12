@@ -3,7 +3,6 @@ import React from 'react';
 import HeroSection from '../../components/HeroSection/HeroSection';
 import FeaturedProperties from '../../components/FeaturedProperties/FeaturedProperties';
 import AboutUs from '../../components/AboutUs/AboutUs';
-import ContactForm from '../../components/ContactForm/ContactForm';
 import Navbar from '../../components/navbar/navbar';
 
 const Inicio = () => {
@@ -16,7 +15,6 @@ const Inicio = () => {
       />
       <FeaturedProperties />
       <AboutUs />
-      <ContactForm />
     </div>
   );
 };

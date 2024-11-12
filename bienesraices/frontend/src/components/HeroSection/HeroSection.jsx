@@ -1,6 +1,6 @@
 import React from 'react';
 import './styless.css';
-import SearchBar from '../searchbar/searchbar';
+import SearchBar from '../searchbar/SearchBar';
 
 const HeroSection = ({ title, subtitle }) => (
   <div className="hero">
