@@ -1,20 +1,20 @@
 // backend/app.js
 const express = require('express');
-const cors = require('cors');
 const sequelize = require('./config/database');
 const propertyRoutes = require('./routes/propertyRoutes');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
-app.use(cors());
 app.use(express.json());
-app.use('/uploads', express.static('uploads'));
 
+// Servir archivos estáticos de la carpeta "uploads"
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Rutas para propiedades
-app.use('/api/properties', propertyRoutes); // Ruta general para propiedades
-app.use('/admin/propiedades', propertyRoutes); // Ruta adicional para administración
+// Usar las rutas de propiedades
+app.use('/api/properties', propertyRoutes);
 
+// Sincronizar la base de datos y luego iniciar el servidor
 sequelize.sync().then(() => {
   app.listen(5000, () => {
     console.log('Servidor escuchando en el puerto 5000');
@@ -22,4 +22,3 @@ sequelize.sync().then(() => {
 }).catch((error) => {
   console.error('Error al sincronizar la base de datos:', error);
 });
-
