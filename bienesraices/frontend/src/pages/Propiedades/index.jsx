@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navbar from '../../components/navbar/navbar';  // Importa el Navbar
 import SearchBar from '../../components/SearchBar/SearchBar';
 import PropertyCard from '../../components/PropertyCard/PropertyCard';
 import ImageCarousel from '../../components/ImageCarousel/ImageCarousel';
@@ -8,8 +9,9 @@ const propiedadesData = [
   {
     id: 1,
     title: 'Casa en Palermo',
+    price: '$250,000',
     description: 'Casa espaciosa con 3 dormitorios y 2 baños.',
-    images: ['/images/casa1-1.jpg', '/images/casa1-2.jpg', '/images/casa1-3.jpg'],
+    images: ['../../images/Casa1/1.jpg', '../../images/Casa1/2.jpg', '../../images/Casa1/3.jpg', '../../images/Casa1/4.jpg', '../../images/Casa1/5.jpg', '../../images/Casa1/6.jpg', ],
   },
   {
     id: 2,
@@ -33,6 +35,7 @@ const Propiedades = () => {
 
   return (
     <div className="propiedades-page">
+      <Navbar />  {/* Asegúrate de que esta línea esté aquí */}
       <h1>Propiedades</h1>
       <SearchBar />
       <div className="properties-grid">
