@@ -3,7 +3,7 @@
 .hero {
   height: 80vh;
   min-height: 600px;
-  background-image: url('../../images/Casa-moderna-blogc-1-scaled.jpg');
+  background-image: url('/images/Casa-moderna-blogc-1-scaled.jpg');
   background-position: center;
   position: relative;
   display: flex;

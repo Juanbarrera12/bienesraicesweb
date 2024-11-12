@@ -11,7 +11,12 @@ const propiedadesData = [
     title: 'Casa en Palermo',
     price: '$250,000',
     description: 'Casa espaciosa con 3 dormitorios y 2 baños.',
-    images: ['../../images/Casa1/1.jpg', '../../images/Casa1/2.jpg', '../../images/Casa1/3.jpg', '../../images/Casa1/4.jpg', '../../images/Casa1/5.jpg', '../../images/Casa1/6.jpg', ],
+    images: ['/images/Casa1/1.jpg',
+      '/images/Casa1/2.jpg',
+      '/images/Casa1/3.jpg',
+      '/images/Casa1/4.jpg',
+      '/images/Casa1/5.jpg',
+      '/images/Casa1/6.jpg', ],
   },
   {
     id: 2,

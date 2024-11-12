@@ -3,7 +3,8 @@ import React from 'react';
 import './styles.css'; // Importa el archivo CSS
 
 // Importa la imagen correctamente desde tu directorio de activos
-import propertyImage from '../../images/1.jpg';
+<img src="/images/1.jpg" alt="Descripción" />
+
  // Cambia la ruta si es necesario
 
 const FeaturedProperties = () => {
@@ -12,12 +13,12 @@ const FeaturedProperties = () => {
     {
       title: 'Localidad 1',
       listings: '25 listas',
-      image: propertyImage,
+      image: '/images/1.jpg', // Cambia las imágenes si tienes más
     },
     {
       title: 'Localidad 2',
       listings: '18 listas',
-      image: propertyImage, // Cambia las imágenes si tienes más
+      image: '/images/2.jpg', // Cambia las imágenes si tienes más
     },
   ];
 
