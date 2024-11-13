@@ -1,16 +1,25 @@
 /* Estilos generales del formulario de contacto */
+.navbar.no-animation {
+  animation: none;
+  position: sticky; /* Mantén el navbar fijo */
+  top: 0; /* Posiciónalo siempre visible en la parte superior */
+  z-index: 100; /* Asegúrate de que esté encima del resto del contenido */
+}
+
 .contact-form {
+  position: relative;
   padding: 4rem 2rem;
   max-width: 800px;
-  margin: 50px auto; /* Centra el formulario horizontalmente */
+  margin: 50px auto;
   text-align: center;
   background: linear-gradient(135deg, #ffffff, #f4f4f9);
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra los elementos hijos */
-  animation: fadeIn 1s ease-out;
+  align-items: center;
+  animation: contactFadeIn 1s ease-out;
+  overflow: hidden; /* Asegura que las animaciones de hijos no desborden */
 }
 
 /* Título del formulario */
@@ -19,17 +28,18 @@
   margin-bottom: 1rem;
   color: #333;
   opacity: 0;
-  animation: fadeIn 1s ease-out forwards 0.5s; /* Animación de aparición */
+  animation: contactFadeIn 1s ease-out forwards 0.5s;
 }
 
 /* Estilo del formulario */
-.contact-form form {
+.contact-form > form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   margin-top: 1rem;
   width: 100%;
   max-width: 500px;
+  animation: contactFormFadeIn 1s ease-out;
 }
 
 /* Estilos de los campos del formulario */
@@ -71,7 +81,7 @@
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
-  animation: buttonFadeIn 1s ease-out;
+  animation: contactButtonFadeIn 1s ease-out;
 }
 
 /* Efecto hover del botón */
@@ -108,11 +118,11 @@
   cursor: pointer;
   transition: color 0.3s ease, transform 0.3s ease;
   opacity: 0;
-  animation: starFadeIn 1s ease-out forwards;
+  animation: contactStarFadeIn 1s ease-out forwards;
 }
 
 /* Animación de entrada para las estrellas */
-@keyframes starFadeIn {
+@keyframes contactStarFadeIn {
   0% {
     opacity: 0;
     transform: scale(0.8);
@@ -142,7 +152,7 @@
 }
 
 /* Animación del botón de envío */
-@keyframes buttonFadeIn {
+@keyframes contactButtonFadeIn {
   0% {
     opacity: 0;
     transform: translateY(20px);
@@ -153,8 +163,8 @@
   }
 }
 
-/* Animación de fade-in general */
-@keyframes fadeIn {
+/* Animación de fade-in general para el formulario de contacto */
+@keyframes contactFadeIn {
   0% {
     opacity: 0;
     transform: translateY(20px);
@@ -164,3 +174,16 @@
     transform: translateY(0);
   }
 }
+
+/* Animación de fade-in específica para el formulario */
+@keyframes contactFormFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

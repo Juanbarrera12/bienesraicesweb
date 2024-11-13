@@ -36,7 +36,10 @@ const ContactForm = () => {
   };
 
   return (
+    <>
+    <Navbar className="no-animation" />
     <section className="contact-form">
+      
       <h2>Contáctanos</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -81,6 +84,7 @@ const ContactForm = () => {
         <button type="submit">Enviar</button>
       </form>
     </section>
+    </>
   );
 };
 

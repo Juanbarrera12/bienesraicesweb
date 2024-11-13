@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const contactController = require('../controllers/contactController');
+const contactController = require('../controllers/contactControllers');
+
 
 // Ruta para crear un nuevo mensaje
 router.post('/', contactController.createContact);
