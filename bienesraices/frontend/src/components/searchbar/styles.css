@@ -1,69 +1,105 @@
-/* src/components/SearchBar/SearchBar.css */
 .search-bar {
-    position: absolute;
-    bottom: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #fff;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-    z-index: 3;
-    width: 90%;
-    max-width: 1000px;
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #ffffff, #f3f4f6);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  z-index: 3;
+  width: 90%;
+  max-width: 1000px;
+}
+
+.search-option {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.search-option button {
+  background-color: transparent;
+  color: #555;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, background-color 0.3s, border-color 0.3s;
+  opacity: 0; /* Ocultar inicialmente */
+  animation: fadeInZoom 0.5s ease-in-out forwards;
+  animation-delay: 0.2s; /* Agregar un pequeño retraso */
+}
+
+.search-option button:hover,
+.search-option button.active {
+  background-color: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.2);
+  transform: scale(1.05); /* Efecto de zoom al hacer hover */
+}
+
+.search-fields {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+}
+
+.search-fields select {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  flex: 1;
+  min-width: 140px;
+  cursor: pointer;
+  background-color: #fff;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"%3E%3Cpolyline points="6 9 12 15 18 9"%3E%3C/polyline%3E%3C/svg%3E');
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+  transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  padding-right: 2rem; /* Espacio para la flecha personalizada */
+  -webkit-appearance: none; /* Eliminar la flecha predeterminada */
+  -moz-appearance: none; /* Compatibilidad con Firefox */
+  appearance: none; /* Asegurar la compatibilidad en otros navegadores */
+}
+
+/* Hover y focus */
+.search-fields select:hover,
+.search-fields select:focus {
+  border-color: #2563eb;
+  transform: scale(1.05); /* Zoom al hacer hover o focus */
+}
+
+.search-fields button {
+  background-color: #2563eb;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, background-color 0.3s;
+  opacity: 0; /* Ocultar inicialmente */
+  animation: fadeInZoom 0.5s ease-in-out forwards;
+  animation-delay: 0.4s; /* Retraso adicional */
+}
+
+.search-fields button:hover {
+  background-color: #1e3a8a;
+  box-shadow: 0 6px 12px rgba(30, 58, 138, 0.3);
+  transform: scale(1.05); /* Efecto de zoom al hacer hover */
+}
+
+@keyframes fadeInZoom {
+  0% {
+      opacity: 0;
+      transform: scale(0.9) translateY(-10px);
   }
-  
-  .search-option {
-    display: flex;
-    gap: 0.5rem;
+  100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
   }
-  
-  .search-option button {
-    background-color: transparent;
-    color: #333;
-    padding: 0.75rem 1.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-  
-  .search-option button:hover,
-  .search-option button.active {
-    background-color: #4d90fe;
-    color: #fff;
-    border-color: #4d90fe;
-  }
-  
-  .search-fields {
-    display: flex;
-    gap: 1rem;
-    flex: 1;
-  }
-  
-  .search-fields select {
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    flex: 1;
-    min-width: 120px;
-    cursor: pointer;
-  }
-  
-  .search-fields button {
-    background-color: #4d90fe;
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .search-fields button:hover {
-    background-color: #357abd;
-  }
-  
+}
