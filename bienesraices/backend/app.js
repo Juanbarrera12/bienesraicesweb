@@ -1,43 +1,37 @@
+// app.js
 const express = require('express');
-const cors = require('cors');
-const path = require('path');
-const { sequelize, initializeDatabase } = require('./config/database');
-const propertyRoutes = require('./routes/propertyRoutes'); // Asegúrate de que este archivo exista
-const contactRoutes = require('./routes/contactRoutes'); // Asegúrate de que este archivo exista
-const { emailLimiter, validateContact } = require('../backend/middleware/contactValidation');
-const router = express.Router();
-const contactController = require('./controllers/contactControllers');
+const sequelize = require('./config/database');
+const cors = require('cors'); // Importa cors
+const propertyRoutes = require('./routes/propertyRoutes');
+const contactRoutes = require('./routes/contactRoutes');
 require('dotenv').config();
 
 const app = express();
 
-app.use(cors());
+app.use(cors()); // Activa CORS para todas las rutas
 app.use(express.json());
-
-// Servir archivos estáticos desde la carpeta 'uploads'
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
-// Ruta de contacto
-app.use('/api/contact', emailLimiter, validateContact, contactController.sendEmail);
-
-// Rutas
 app.use('/api/properties', propertyRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/uploads', express.static('uploads'));
 
-// Inicializar base de datos y servidor
+
 const startServer = async () => {
   try {
-    // Inicializar la base de datos (sincroniza los modelos)
-    await initializeDatabase();
+    await sequelize.authenticate();
+    console.log("Conectado a la base de datos PostgreSQL");
+
+    await sequelize.sync({ alter: true });
+    console.log("Base de datos sincronizada correctamente");
 
     const PORT = process.env.PORT || 5000;
     app.listen(PORT, () => {
-      console.log(`Servidor escuchando en el puerto ${PORT}`);
+      console.log(`Servidor corriendo en el puerto ${PORT}`);
     });
   } catch (error) {
-    console.error('Error al iniciar el servidor:', error);
-    process.exit(1);
+    console.error('Error al sincronizar la base de datos:', error);
   }
 };
 
 startServer();
+
+

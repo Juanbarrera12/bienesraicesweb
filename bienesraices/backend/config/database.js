@@ -1,3 +1,4 @@
+// config/database.js
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
@@ -19,7 +20,7 @@ const sequelize = new Sequelize(
     define: {
       timestamps: true,
       underscored: true,
-    }
+    },
   }
 );
 
@@ -27,7 +28,7 @@ const initializeDatabase = async () => {
   try {
     await sequelize.authenticate();
     console.log('Conectado a la base de datos PostgreSQL');
-    await sequelize.sync({ force: false });
+    await sequelize.sync({ alter: true });
     console.log('Modelos sincronizados con la base de datos');
   } catch (error) {
     console.error('Error al conectar con la base de datos:', error);
@@ -35,4 +36,7 @@ const initializeDatabase = async () => {
   }
 };
 
-module.exports = { sequelize, initializeDatabase };
+module.exports = sequelize;
+
+
+

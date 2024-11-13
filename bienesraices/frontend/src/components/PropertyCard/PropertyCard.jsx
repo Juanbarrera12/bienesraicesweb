@@ -1,41 +1,62 @@
-import React from 'react';
-import { FaMapMarkerAlt } from 'react-icons/fa';
+import React, { useState } from 'react';
+import ImageCarousel from '../ImageCarousel/ImageCarousel';
 import './styles.css';
 
-function PropertyCard({ property, onClick }) {
-  // Validación para asegurar que `property` y sus propiedades estén definidas
-  if (!property) return null;
+function PropertyCard({ property }) {
+  const { title, price, location, description, images } = property;
+  const [isCarouselOpen, setIsCarouselOpen] = useState(false);
+
+  const imageUrls = images && images.length > 0 
+    ? images.map(image => `http://localhost:5000${image.url}`)
+    : [];
+
+  const openCarousel = (e) => {
+    e.stopPropagation(); // Prevenir propagación del evento
+    setIsCarouselOpen(true);
+  };
   
-  const { title, price, location, description, imageUrl } = property;
-  const fullImageUrl = `http://localhost:5000${imageUrl}`;
-
-
-  // Log para verificar los datos de la propiedad en la consola
-  console.log("Property data:", property);
+  const closeCarousel = () => setIsCarouselOpen(false);
 
   return (
-    <div className="property-card" onClick={onClick}>
-      {imageUrl ? (
-        <div
-          className="property-card-image"
-          style={{ backgroundImage: `url(${fullImageUrl})` }}
-        ></div>
-      ) : (
-        <div className="property-card-image-placeholder">
-          {/* Placeholder si no hay `imageUrl` */}
-          Imagen no disponible
+    <>
+      <div className="property-card">
+        <div className="property-image-container">
+          <img 
+            src={imageUrls[0] || 'ruta_a_imagen_predeterminada'}
+            alt={title}
+            className="property-card-image"
+            onClick={openCarousel}
+          />
+        </div>
+
+        <div className="property-card-content">
+          <h3 className="property-card-title">{title}</h3>
+          <p className="property-card-price"><strong>Precio:</strong> {price}</p>
+          <p className="property-card-location">{location}</p>
+          <p className="property-card-description">{description}</p>
+        </div>
+      </div>
+
+      {isCarouselOpen && (
+        <div className="carousel-container">
+          <ImageCarousel
+            images={imageUrls}
+            onClose={closeCarousel}
+            title={title}
+            price={price}
+            location={location}
+            description={description}
+          />
         </div>
       )}
-      <div className="property-card-content">
-        <h3 className="property-card-title">{title}</h3>
-        <p className="property-card-price"><strong>Precio:</strong> {price}</p>
-        <p className="property-card-location">
-          <FaMapMarkerAlt className="location-icon" /> {location}
-        </p>
-        <p className="property-card-description">{description}</p>
-      </div>
-    </div>
+    </>
   );
 }
 
 export default PropertyCard;
+
+
+
+
+
+

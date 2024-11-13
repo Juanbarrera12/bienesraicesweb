@@ -1,3 +1,4 @@
+/* Estilos generales del carrusel */
 .carousel-overlay {
   position: fixed;
   top: 0;
@@ -9,38 +10,83 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  pointer-events: auto;
 }
 
 .carousel-content {
   position: relative;
+  display: flex;
   width: 90%;
-  max-width: 800px;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.1);
+  max-width: 1200px;
+  background: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  pointer-events: auto;
+}
+
+.carousel-images {
+  position: relative;
+  width: 60%;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .carousel-image {
   width: 100%;
-  max-height: 500px;
+  max-height: 80vh;
   object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px 0 0 10px;
+}
+
+.carousel-info {
+  width: 40%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.carousel-info h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #000000;
+}
+
+.carousel-info p {
+  font-size: 1rem;
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.contact-button {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: 50%;
+  margin: 50px auto;
+  text-decoration: none;
+}
+
+.contact-button:hover {
+  background-color: #0056b3;
 }
 
 .carousel-close {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: #ff4d4d;
+  background: transparent;
   border: none;
   font-size: 1.8rem;
   cursor: pointer;
-  color: white;
+  color: rgb(0, 0, 0);
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -51,7 +97,7 @@
 }
 
 .carousel-close:hover {
-  background: #ff6666;
+  background: #999;
 }
 
 .carousel-prev,
@@ -59,7 +105,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.7);
+  background: transparent;
   border: none;
   font-size: 2.5rem;
   cursor: pointer;
@@ -67,21 +113,37 @@
   border-radius: 50%;
   width: 50px;
   height: 50px;
+  display: flex;           /* Añadido */
+  align-items: center;     /* Añadido */
+  justify-content: center; /* Añadido */
+  line-height: 1;         /* Añadido */
+  padding: 0;             /* Añadido */
+}
+
+/* Si es necesario, podemos ajustar específicamente el contenido */
+.carousel-prev span,
+.carousel-next span {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.3s ease;
+  height: 100%;
+  width: 100%;
+  margin-top: 0px; /* Ajuste fino si es necesario */
 }
 
 .carousel-prev {
-  left: 20px;
+  left: 10px;
 }
 
 .carousel-next {
-  right: 20px;
+  right: 10px;
 }
 
 .carousel-prev:hover,
 .carousel-next:hover {
-  background: rgba(255, 255, 255, 0.9);
+  background: #fff;
+  opacity: 0.5;
 }
+
+
+

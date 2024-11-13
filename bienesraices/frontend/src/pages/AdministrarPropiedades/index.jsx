@@ -10,7 +10,7 @@ const AdministrarPropiedades = () => {
     location: '',
     description: '',
   });
-  const [image, setImage] = useState(null); // Estado para la imagen
+  const [images, setImages] = useState([]); // Estado para múltiples imágenes
 
   useEffect(() => {
     fetchProperties();
@@ -25,7 +25,7 @@ const AdministrarPropiedades = () => {
     }
   };
 
-  // Manejar el envío del formulario para agregar una nueva propiedad con imagen
+  // Manejar el envío del formulario para agregar una nueva propiedad con múltiples imágenes
   const handleAddProperty = async (e) => {
     e.preventDefault();
 
@@ -34,7 +34,11 @@ const AdministrarPropiedades = () => {
     formData.append('price', newProperty.price);
     formData.append('location', newProperty.location);
     formData.append('description', newProperty.description);
-    if (image) formData.append('image', image); // Agrega la imagen al FormData
+
+    // Agregar cada imagen al FormData
+    Array.from(images).forEach((image) => {
+      formData.append('images', image); // Agrega cada imagen seleccionada
+    });
 
     try {
       await axios.post('http://localhost:5000/api/properties', formData, {
@@ -44,7 +48,7 @@ const AdministrarPropiedades = () => {
       });
       fetchProperties();
       setNewProperty({ title: '', price: '', location: '', description: '' });
-      setImage(null); // Limpia el campo de imagen
+      setImages([]); // Limpia el campo de imágenes
     } catch (error) {
       console.error("Error al agregar propiedad:", error);
     }
@@ -91,10 +95,11 @@ const AdministrarPropiedades = () => {
           value={newProperty.description}
           onChange={(e) => setNewProperty({ ...newProperty, description: e.target.value })}
           required
-        />
+        ></textarea>
         <input
           type="file"
-          onChange={(e) => setImage(e.target.files[0])} // Manejar la imagen seleccionada
+          multiple
+          onChange={(e) => setImages(e.target.files)} // Manejar múltiples imágenes seleccionadas
           required
         />
         <button type="submit">Agregar Propiedad</button>
@@ -109,10 +114,18 @@ const AdministrarPropiedades = () => {
             <p>Precio: {property.price}</p>
             <p>Ubicación: {property.location}</p>
             <p>Descripción: {property.description}</p>
-            {property.imageUrl && (
-              <img src={`http://localhost:5000${property.imageUrl}`} alt={property.title} style={{ width: '150px', borderRadius: '8px' }} />
-            )}
-            <button onClick={() => handleDeleteProperty(property.id)}>Eliminar</button> {/* Botón de eliminar */}
+            
+            {/* Mostrar múltiples imágenes */}
+            {property.images && property.images.map((image, index) => (
+              <img
+                key={index}
+                src={`http://localhost:5000${image.url}`}
+                alt={`Imagen ${index + 1}`}
+                style={{ width: '150px', borderRadius: '8px', marginRight: '10px' }}
+              />
+            ))}
+
+            <button onClick={() => handleDeleteProperty(property.id)}>Eliminar</button>
           </li>
         ))}
       </ul>
@@ -121,5 +134,7 @@ const AdministrarPropiedades = () => {
 };
 
 export default AdministrarPropiedades;
+
+
 
 

@@ -6,7 +6,6 @@ import PropertyCard from '../../components/PropertyCard/PropertyCard';
 import ImageCarousel from '../../components/ImageCarousel/ImageCarousel';
 import './styles.css';
 
-
 const Propiedades = () => {
   const [properties, setProperties] = useState([]);
   const [selectedProperty, setSelectedProperty] = useState(null);
@@ -19,7 +18,7 @@ const Propiedades = () => {
 
   const fetchProperties = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/properties'); // Asegúrate de que la URL es correcta
+      const response = await axios.get('http://localhost:5000/api/properties');
       setProperties(response.data);
       setLoading(false);
     } catch (error) {
@@ -30,11 +29,11 @@ const Propiedades = () => {
   };
 
   const handleCardClick = (property) => {
-    setSelectedProperty(property);
+    setSelectedProperty(property); // Abrir el carrusel en modo pantalla completa
   };
 
   const handleCloseCarousel = () => {
-    setSelectedProperty(null);
+    setSelectedProperty(null); // Cerrar el carrusel
   };
 
   if (loading) return <p>Cargando propiedades...</p>;
@@ -56,12 +55,17 @@ const Propiedades = () => {
         ))}
       </div>
       {selectedProperty && (
-        <ImageCarousel images={[selectedProperty.imageUrl]} onClose={handleCloseCarousel} />
+        <ImageCarousel
+          images={selectedProperty.imageUrls} // Aquí pasamos todas las imágenes de la propiedad
+          onClose={handleCloseCarousel}
+          isFullscreen={true} // Modo pantalla completa
+        />
       )}
     </div>
   );
 };
 
 export default Propiedades;
+
 
 
