@@ -1,0 +1,252 @@
+/* Real Estate Section Styles */
+.re-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 2rem;
+  font-family: Arial, sans-serif;
+  color: #333;
+  text-align: center;
+  margin: auto;
+  width: 80%;
+  background: linear-gradient(135deg, #ffffff, #f4f4f9);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  animation: sectionFadeIn 1s ease-out;
+  overflow: hidden;
+}
+
+/* Logo */
+.re-logo img {
+  width: 80px;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.re-logo img:hover {
+  transform: scale(1.1);
+}
+
+/* Redes Sociales */
+.re-social-media {
+  position: fixed; /* Posición fija en la pantalla */
+  top: 50%;
+  left: 20px; /* Posición final en el lado izquierdo */
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Botones de Redes Sociales */
+.re-social-button {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: white;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 18px;
+  opacity: 0; /* Inicialmente oculto */
+  transform: translateX(-60px); /* Comienza fuera de la pantalla */
+  animation: slideInFromLeft 0.5s ease-out forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición para el efecto hover */
+}
+
+/* Agregar retraso para la aparición secuencial */
+.re-social-button.re-whatsapp {
+  background-color: #25D366;
+  animation-delay: 0.2s;
+}
+
+.re-social-button.re-facebook {
+  background-color: #3b5998;
+  animation-delay: 0.4s;
+}
+
+.re-social-button.re-email {
+  background-color: #555;
+  animation-delay: 0.6s;
+}
+
+/* Icono dentro del botón */
+.re-icon {
+  font-size: 20px;
+}
+
+/* Efecto Hover - Botones más grandes */
+.re-social-button:hover {
+  transform: scale(1.5); /* Aumenta el tamaño al 150% */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+}
+
+/* Animación para deslizar los iconos desde la izquierda */
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px); /* Comienza fuera de la pantalla */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0); /* Posición final en el contenedor */
+  }
+}
+
+/* Imagen principal */
+.re-main-image {
+  max-width: 30%;
+  border-radius: 12px;
+  margin-top: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  animation: mainImageFadeIn 1s ease-out;
+}
+
+.re-main-image:hover {
+  transform: scale(1.02);
+}
+
+/* Contenido de texto */
+.re-text-content {
+  max-width: 600px;
+  text-align: center;
+  margin-top: 2rem;
+  animation: textContentFadeIn 1s ease-out forwards;
+}
+
+.re-text-content h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+  opacity: 0;
+  animation: headingFadeIn 1s ease-out forwards 0.5s;
+}
+
+.re-text-content h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 1.5rem 0 1rem;
+  color: #555;
+  opacity: 0;
+  animation: subheadingFadeIn 1s ease-out forwards 0.7s;
+}
+
+.re-text-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: #666;
+  opacity: 0;
+  animation: paragraphFadeIn 1s ease-out forwards 0.9s;
+}
+
+.re-text-content strong {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Animaciones */
+@keyframes sectionFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes socialMediaFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes mainImageFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes textContentFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes headingFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes subheadingFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes paragraphFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .re-section {
+    width: 95%;
+    padding: 2rem;
+  }
+
+  .re-social-media {
+    position: static;
+    transform: none;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px 0;
+  }
+
+  .re-main-image {
+    max-width: 100%;
+  }
+
+  .re-text-content {
+    padding: 0 10px;
+  }
+}

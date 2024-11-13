@@ -15,7 +15,7 @@ function App() {
                 <Route path="/" element={<Inicio />} />
                 <Route path="/propiedades" element={<Propiedades />} />
                 <Route path="/blog" element={<Blog />} />
-                <Route path="/sobre-nosotros" element={<SobreNosotros />} />
+                <Route path="/SobreNosotros" element={<SobreNosotros />} />
                 <Route path="/admin/propiedades" element={<AdministrarPropiedades />} />
                 <Route path="/contact" element={<ContactForm />} /> {/* Agregar la ruta para Contacto */}
             </Routes>
