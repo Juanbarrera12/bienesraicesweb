@@ -1,13 +1,10 @@
-// routes/propertyRoutes.js
 const express = require('express');
-const Property = require('../models/property');
-const Image = require('../models/Image');
+const Property = require('../models/Property');
+const Image = require('../models/Image'); // Si tienes un modelo de imágenes relacionado
 const router = express.Router();
 const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
 
-// Configuración de almacenamiento de multer
+// Configuración de multer para la carga de imágenes
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/');
@@ -16,33 +13,24 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + '-' + file.originalname);
   },
 });
-
 const upload = multer({ storage });
 
-const uploadDir = path.join(__dirname, '../uploads');
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir);
-}
-
-// Obtener todas las propiedades junto con sus imágenes
-router.get('/', async (req, res) => {
-  try {
-    const properties = await Property.findAll({
-      include: [{ model: Image, as: 'images' }],
-    });
-    res.json(properties);
-  } catch (error) {
-    console.error("Error al obtener propiedades:", error);
-    res.status(500).json({ error: 'Error al obtener las propiedades' });
-  }
-});
-
-// Crear una nueva propiedad con múltiples imágenes
+// Crear una nueva propiedad
 router.post('/', upload.array('images', 10), async (req, res) => {
-  const { title, price, location, description } = req.body;
+  const { title, type, price, location, rooms, bathrooms, amenities, services, description } = req.body;
 
   try {
-    const property = await Property.create({ title, price, location, description });
+    const property = await Property.create({
+      title,
+      type,
+      price,
+      location,
+      rooms,
+      bathrooms,
+      amenities: amenities ? JSON.parse(amenities) : [],
+      services: services ? JSON.parse(services) : [],
+      description,
+    });
 
     if (req.files) {
       const imageRecords = req.files.map(file => ({
@@ -59,19 +47,68 @@ router.post('/', upload.array('images', 10), async (req, res) => {
   }
 });
 
-// Eliminar una propiedad y sus imágenes asociadas
-router.delete('/:id', async (req, res) => {
-  const { id } = req.params;
+// Obtener todas las propiedades con imágenes
+router.get('/', async (req, res) => {
   try {
-    await Image.destroy({ where: { propertyId: id } });
-    await Property.destroy({ where: { id } });
-    res.status(204).send();
+    const properties = await Property.findAll({
+      include: [{ model: Image, as: 'images' }]
+    });
+    res.json(properties);
   } catch (error) {
-    console.error("Error al eliminar la propiedad:", error);
+    console.error("Error al obtener propiedades con imágenes:", error);
+    res.status(500).json({ error: 'Error al obtener propiedades' });
+  }
+});
+
+// Eliminar una propiedad
+router.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Property.destroy({ where: { id } });
+    res.status(204).send(); // 204 No Content indica que la eliminación fue exitosa
+  } catch (error) {
+    console.error("Error al eliminar propiedad:", error);
     res.status(500).json({ error: 'Error al eliminar la propiedad' });
   }
 });
 
+// Actualizar una propiedad
+router.put('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, type, price, location, rooms, bathrooms, amenities, services, description } = req.body;
+
+    const updatedProperty = await Property.update(
+      { 
+        title, 
+        type, 
+        price, 
+        location, 
+        rooms, 
+        bathrooms, 
+        amenities: amenities ? JSON.parse(amenities) : [], 
+        services: services ? JSON.parse(services) : [], 
+        description 
+      },
+      { where: { id } }
+    );
+
+    res.status(200).json({ message: 'Propiedad actualizada correctamente' });
+  } catch (error) {
+    console.error("Error al actualizar propiedad:", error);
+    res.status(500).json({ error: 'Error al actualizar la propiedad' });
+  }
+});
+
+
+
+
 module.exports = router;
+
+
+
+
+
+
 
 

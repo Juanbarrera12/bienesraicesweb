@@ -6,6 +6,8 @@ import Blog from './pages/Blog/index.jsx';
 import SobreNosotros from './pages/SobreNosotros/index.jsx';
 import AdministrarPropiedades from './pages/AdministrarPropiedades/index.jsx';
 import ContactForm from './pages/contact/ContactForm.jsx';
+import AdminMsj from './pages/AdminMsj/AdminMessages.jsx';
+
 import './App.css';
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
                 <Route path="/SobreNosotros" element={<SobreNosotros />} />
                 <Route path="/admin/propiedades" element={<AdministrarPropiedades />} />
                 <Route path="/contact" element={<ContactForm />} /> {/* Agregar la ruta para Contacto */}
+                <Route path="/mensajes" element={<AdminMsj />} />
             </Routes>
         </Router>
     );

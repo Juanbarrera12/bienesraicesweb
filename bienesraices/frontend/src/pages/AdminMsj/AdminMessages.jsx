@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import  Alert, { AlertDescription } from '../../components/ui/Alert';
 
 const AdminMessages = () => {
   const [messages, setMessages] = useState([]);

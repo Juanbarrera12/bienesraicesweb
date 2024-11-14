@@ -1,7 +1,6 @@
-// app.js
 const express = require('express');
-const sequelize = require('./config/database');
-const cors = require('cors'); // Importa cors
+const { sequelize } = require('./models'); // Importa sequelize y los modelos desde index.js
+const cors = require('cors'); 
 const propertyRoutes = require('./routes/propertyRoutes');
 const contactRoutes = require('./routes/contactRoutes');
 require('dotenv').config();
@@ -13,7 +12,6 @@ app.use(express.json());
 app.use('/api/properties', propertyRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/uploads', express.static('uploads'));
-
 
 const startServer = async () => {
   try {
@@ -33,5 +31,6 @@ const startServer = async () => {
 };
 
 startServer();
+
 
 
