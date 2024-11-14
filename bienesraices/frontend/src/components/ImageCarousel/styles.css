@@ -145,5 +145,64 @@
   opacity: 0.5;
 }
 
+/* Responsive ajustes */
+@media (max-width: 768px) {
+  .carousel-content {
+    flex-direction: column; /* Cambia a diseño vertical en pantallas pequeñas */
+    width: 95%;
+    max-width: 95%;
+  }
 
+  .carousel-images {
+    width: 100%; /* Ocupa todo el ancho en pantallas pequeñas */
+  }
+
+  .carousel-image {
+    max-height: 50vh; /* Ajusta la altura de la imagen */
+    border-radius: 10px 10px 0 0; /* Bordes redondeados solo en la parte superior */
+  }
+
+  .carousel-info {
+    width: 100%; /* Ocupa todo el ancho */
+    padding: 1rem; /* Reduce el padding */
+    text-align: center; /* Centra el texto */
+  }
+
+  .carousel-info h2 {
+    font-size: 1.5rem; /* Reduce el tamaño de la fuente */
+  }
+
+  .carousel-info p {
+    font-size: 0.9rem; /* Ajusta el tamaño de la fuente */
+  }
+
+  .contact-button {
+    width: 80%; /* Botón más amplio en pantallas pequeñas */
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  .carousel-prev,
+  .carousel-next {
+    font-size: 2rem; /* Ajusta el tamaño del botón */
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-info h2 {
+    font-size: 1.3rem;
+  }
+
+  .carousel-info p {
+    font-size: 0.8rem;
+  }
+
+  .contact-button {
+    width: 100%; /* Botón ocupa todo el ancho en pantallas muy pequeñas */
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
+}
 

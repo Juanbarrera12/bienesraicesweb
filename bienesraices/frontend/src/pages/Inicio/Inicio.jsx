@@ -2,7 +2,6 @@
 import React from 'react';
 import HeroSection from '../../components/HeroSection/HeroSection';
 import FeaturedProperties from '../../components/FeaturedProperties/FeaturedProperties';
-import AboutUs from '../../components/AboutUs/AboutUs';
 import Navbar from '../../components/navbar/navbar';
 
 const Inicio = () => {
@@ -14,7 +13,6 @@ const Inicio = () => {
         subtitle="Propiedades exclusivas a tu alcance"
       />
       <FeaturedProperties />
-      <AboutUs />
     </div>
   );
 };

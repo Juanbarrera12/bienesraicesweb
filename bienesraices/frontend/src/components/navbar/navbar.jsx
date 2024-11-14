@@ -1,36 +1,38 @@
 // src/components/navbar/navbar.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css';
 
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-main">
-        <Link to="/" className="logo">
+        <Link to="http://localhost:3000/" className="logo">
           RealState
         </Link>
-        
-        <ul className="nav-links">
+        <span className="menu-toggle" onClick={toggleMenu}>☰</span>
+        <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
           <li>
-            <Link to="/">Inicio</Link>
+            <Link to="/" onClick={toggleMenu}>Inicio</Link>
           </li>
           <li>
-            <Link to="/propiedades">Propiedades</Link>
+            <Link to="/propiedades" onClick={toggleMenu}>Propiedades</Link>
           </li>
           <li>
-            <Link to="/SobreNosotros">Nosotros</Link>
+            <Link to="/SobreNosotros" onClick={toggleMenu}>Nosotros</Link>
           </li>
           <li>
-            <Link to="/servicios">Servicios</Link>
-          </li>
-          <li>
-            <Link to="/contact">Contacto</Link>
+            <Link to="/contact" onClick={toggleMenu}>Contacto</Link>
           </li>
         </ul>
-
         <button className="add-listing">
-          Agregar Propiedad
+          Iniciar Sesión
         </button>
       </div>
     </nav>

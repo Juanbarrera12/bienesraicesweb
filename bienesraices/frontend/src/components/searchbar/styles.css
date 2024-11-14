@@ -67,7 +67,6 @@
   appearance: none; /* Asegurar la compatibilidad en otros navegadores */
 }
 
-/* Hover y focus */
 .search-fields select:hover,
 .search-fields select:focus {
   border-color: #2563eb;
@@ -103,3 +102,50 @@
       transform: scale(1) translateY(0);
   }
 }
+
+/* Responsivo */
+@media screen and (max-width: 768px) {
+  .search-bar {
+    flex-direction: column; /* Cambia a diseño en columna */
+    gap: 1rem;
+    padding: 1rem;
+    width: 95%;
+    bottom: -15px; /* Ajusta la posición en dispositivos más pequeños */
+  }
+
+  .search-fields {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .search-fields select,
+  .search-fields button {
+    padding: 0.6rem 1rem; /* Reduce el padding en elementos */
+    font-size: 0.9rem; /* Disminuye el tamaño de fuente */
+  }
+
+  .search-option {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .search-option button {
+    padding: 0.6rem 1rem; /* Ajusta el padding de los botones */
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .search-bar {
+    padding: 0.8rem;
+    gap: 0.8rem;
+  }
+
+  .search-fields select,
+  .search-fields button,
+  .search-option button {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}
+
