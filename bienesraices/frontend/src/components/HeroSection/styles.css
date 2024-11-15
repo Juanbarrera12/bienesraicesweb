@@ -1,6 +1,20 @@
+:root {
+  --hero-height: 80vh;
+  --hero-min-height: 600px;
+  --text-color: #fff;
+  --overlay-color: rgba(0, 0, 0, 0.5);
+  --font-size-large: 3rem;
+  --font-size-medium: 1.5rem;
+  --max-width: 800px;
+  --search-bar-width: 90%;
+  --search-bar-max-width: 800px;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --border-radius: 8px;
+}
+
 .hero {
-  height: 80vh;
-  min-height: 600px;
+  height: var(--hero-height);
+  min-height: var(--hero-min-height);
   background-image: url('../../images/casa.jpg');
   background-position: center;
   background-size: cover;
@@ -9,7 +23,7 @@
   justify-content: center;
   padding: 2rem;
   position: relative;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .hero-overlay {
@@ -19,7 +33,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Centra verticalmente el contenido */
+  justify-content: center;
   height: 100%; /* Toma toda la altura del hero */
 }
 
@@ -30,68 +44,41 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--overlay-color);
   z-index: 1;
 }
 
 .hero-text {
-  color: #fff;
+  color: var(--text-color);
   text-align: center;
-  max-width: 800px;
+  max-width: var(--max-width);
   z-index: 2;
 }
 
 .hero-text h1 {
-  font-size: 3rem; /* Texto más grande */
+  font-size: var(--font-size-large);
   margin-bottom: 1rem;
 }
 
 .hero-text p {
-  font-size: 1.5rem; /* Subtítulo más grande */
+  font-size: var(--font-size-medium);
   line-height: 1.6;
 }
 
-
 .search-bar {
   position: absolute;
-  bottom: -20px; /* Coloca la barra al final del hero */
+  bottom: -20px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   gap: 1rem;
   background-color: #fff;
   padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
   z-index: 3;
-  width: 90%;
-  max-width: 800px;
-}
-
-.search-bar input,
-.search-bar select,
-.search-bar button {
-  padding: 0.8rem;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-  font-size: 1rem;
-}
-
-.search-bar input,
-.search-bar select {
-  flex: 1; /* Ajusta el ancho de los campos de entrada */
-}
-
-.search-bar button {
-  background-color: #4d90fe;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  padding: 0.8rem 1.2rem;
-}
-
-.search-bar button:hover {
-  background-color: #357abd;
+  width: var(--search-bar-width);
+  max-width: var(--search-bar-max-width);
 }
 
 /* Responsivo para pantallas pequeñas */
@@ -109,7 +96,5 @@
     bottom: -15px;
   }
 }
-
-
 
   

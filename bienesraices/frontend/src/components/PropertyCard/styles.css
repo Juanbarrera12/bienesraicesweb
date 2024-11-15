@@ -1,20 +1,28 @@
+/* Estilos generales del Property Card */
 .property-card {
   background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 100%;
   position: relative;
   z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.property-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Aumentar sombra al pasar el ratón */
 }
 
 .property-image-container {
   width: 100%;
-  height: 200px;
+  height: 220px;
   overflow: hidden;
   position: relative;
+  transition: height 0.3s ease;
 }
 
 .property-card-image {
@@ -26,37 +34,51 @@
 }
 
 .property-card-content {
-  padding: 1rem;
+  padding: 1.5rem; /* Aumentar padding para más espacio */
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .property-card-title {
-  font-size: 1.2rem;
+  font-size: 1.4rem; /* Título más grande */
   font-weight: bold;
   margin-bottom: 0.5rem;
   color: #333;
+  text-transform: uppercase; /* Título en mayúsculas */
+  letter-spacing: 1px; /* Espaciado entre letras para un mejor efecto */
 }
 
 .property-card-price {
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 0.5rem;
+  font-size: 1.2rem; /* Precio más destacado */
+  color: #007bff;
+  margin-bottom: 0.8rem;
+  font-weight: bold;
 }
 
 .property-card-location {
-  font-size: 0.9rem;
-  color: #777;
+  font-size: 1rem;
+  color: #555;
   margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.property-card-location .react-icons {
+  margin-right: 0.6rem; /* Espacio entre el ícono y el texto */
+  color: #00aaff; /* Color celeste para el icono */
 }
 
 .property-card-description {
-  font-size: 0.9rem;
-  color: #666;
+  font-size: 0.95rem;
+  color: #777;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-bottom: 1rem;
 }
 
+/* Estilos del Carrusel */
 .carousel-container {
   position: fixed;
   top: 0;
@@ -64,59 +86,111 @@
   width: 100%;
   height: 100%;
   z-index: 1000;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Responsivo */
+.carousel-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #fff;
+}
+
+.carousel-prev,
+.carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 2.5rem;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 50%;
+  padding: 0.5rem;
+}
+
+.carousel-prev {
+  left: 10px;
+}
+
+.carousel-next {
+  right: 10px;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos del Botón de Contacto */
+.contact-button {
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: 100%;
+  text-decoration: none;
+}
+
+.contact-button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo Responsivo */
 @media (max-width: 768px) {
   .property-image-container {
-    height: 150px; /* Reduce la altura de la imagen */
+    height: 180px;
   }
 
   .property-card-content {
-    padding: 0.8rem; /* Reduce el padding */
+    padding: 1rem;
   }
 
   .property-card-title {
-    font-size: 1rem; /* Ajusta el tamaño de la fuente */
+    font-size: 1.2rem;
   }
 
   .property-card-price,
   .property-card-location,
   .property-card-description {
-    font-size: 0.85rem; /* Ajusta el tamaño de las fuentes */
+    font-size: 0.9rem;
+  }
+
+  .carousel-content {
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .carousel-image {
+    max-height: 50vh;
+    border-radius: 10px;
+  }
+
+  .carousel-info {
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .carousel-prev,
+  .carousel-next {
+    font-size: 2rem;
+    width: 40px;
+    height: 40px;
   }
 }
 
-@media (max-width: 480px) {
-  .property-image-container {
-    height: 120px; /* Aún más pequeño en pantallas muy pequeñas */
-  }
 
-  .property-card-content {
-    padding: 0.6rem; /* Reduce aún más el padding */
-  }
-
-  .property-card-title {
-    font-size: 0.9rem; /* Disminuye el tamaño de la fuente */
-  }
-
-  .property-card-price,
-  .property-card-location,
-  .property-card-description {
-    font-size: 0.8rem; /* Ajuste final para fuentes en pantallas pequeñas */
-  }
-
-  .property-card-description {
-    white-space: normal; /* Permite que el texto se ajuste en varias líneas */
-  }
-}
-
-/* Ajuste del contenedor de carrusel si es necesario */
-.carousel-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1000;
-}

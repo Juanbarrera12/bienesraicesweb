@@ -1,9 +1,10 @@
 const express = require('express');
+const { Sequelize } = require('sequelize');
 const Property = require('../models/Property');
-const Image = require('../models/Image'); // Si tienes un modelo de imágenes relacionado
+const Image = require('../models/Image'); // Modelo de imágenes relacionado
 const router = express.Router();
 const multer = require('multer');
-
+const sequelize = require('../config/database')
 // Configuración de multer para la carga de imágenes
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -15,7 +16,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// Crear una nueva propiedad
+// Ruta para crear una nueva propiedad
 router.post('/', upload.array('images', 10), async (req, res) => {
   const { title, type, price, location, rooms, bathrooms, amenities, services, description } = req.body;
 
@@ -47,11 +48,11 @@ router.post('/', upload.array('images', 10), async (req, res) => {
   }
 });
 
-// Obtener todas las propiedades con imágenes
+// Ruta para obtener todas las propiedades con imágenes
 router.get('/', async (req, res) => {
   try {
     const properties = await Property.findAll({
-      include: [{ model: Image, as: 'images' }]
+      include: [{ model: Image, as: 'images' }],
     });
     res.json(properties);
   } catch (error) {
@@ -60,7 +61,67 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Eliminar una propiedad
+// Nueva ruta para obtener opciones de filtro
+router.get('/filter-options', async (req, res) => {
+  try {
+    // Obtener todas las ubicaciones
+    const locations = await Property.findAll({
+      attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('location')), 'location']],
+      raw: true,
+    });
+
+    // Obtener todos los tipos de propiedad
+    const types = await Property.findAll({
+      attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('type')), 'type']],
+      raw: true,
+    });
+
+    // Obtener todas las comodidades (amenities) usando JSON
+    const amenities = await sequelize.query(
+      'SELECT DISTINCT jsonb_array_elements_text(amenities::jsonb) AS amenity FROM properties',
+      { type: Sequelize.QueryTypes.SELECT }
+    );
+
+    // Retornar las opciones de filtros
+    res.json({
+      locations: locations.map(item => item.location),
+      types: types.map(item => item.type),
+      amenities: amenities.map(item => item.amenity),
+    });
+  } catch (error) {
+    console.error("Error al obtener opciones de filtro:", error);
+    res.status(500).json({ error: 'Error al obtener opciones de filtro' });
+  }
+});
+
+// Ruta para filtrar propiedades
+router.get('/filter', async (req, res) => {
+  const { location, type, maxPrice, minRooms, minBathrooms, amenities } = req.query;
+
+  try {
+    const whereClause = {};
+    if (location) whereClause.location = location;
+    if (type) whereClause.type = type;
+    if (maxPrice) whereClause.price = { [Sequelize.Op.lte]: maxPrice };
+    if (minRooms) whereClause.rooms = { [Sequelize.Op.gte]: minRooms };
+    if (minBathrooms) whereClause.bathrooms = { [Sequelize.Op.gte]: minBathrooms };
+    if (amenities && amenities.length > 0) {
+      whereClause.amenities = { [Sequelize.Op.contains]: amenities }; // Filter amenities
+    }
+
+    const properties = await Property.findAll({
+      where: whereClause,
+      include: [{ model: Image, as: 'images' }],
+    });
+
+    res.json(properties);
+  } catch (error) {
+    console.error("Error al filtrar propiedades:", error);
+    res.status(500).json({ error: 'Error al filtrar propiedades' });
+  }
+});
+
+// Ruta para eliminar una propiedad
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -72,24 +133,14 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-// Actualizar una propiedad
+// Ruta para actualizar una propiedad
 router.put('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const { title, type, price, location, rooms, bathrooms, amenities, services, description } = req.body;
 
     const updatedProperty = await Property.update(
-      { 
-        title, 
-        type, 
-        price, 
-        location, 
-        rooms, 
-        bathrooms, 
-        amenities: amenities ? JSON.parse(amenities) : [], 
-        services: services ? JSON.parse(services) : [], 
-        description 
-      },
+      { title, type, price, location, rooms, bathrooms, amenities, services, description },
       { where: { id } }
     );
 
@@ -100,10 +151,12 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-
-
-
 module.exports = router;
+
+
+
+
+
 
 
 

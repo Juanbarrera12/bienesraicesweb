@@ -3,7 +3,18 @@ import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
 import { HiOutlineX } from 'react-icons/hi';
 import './styles.css';
 
-const ImageCarousel = ({ images, onClose, title, price, location, description }) => {
+const ImageCarousel = ({ 
+  images, 
+  onClose, 
+  title, 
+  price, 
+  location, 
+  description, 
+  rooms, 
+  bathrooms, 
+  amenities, 
+  services 
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleNext = () => {
@@ -32,6 +43,10 @@ const ImageCarousel = ({ images, onClose, title, price, location, description })
           <p><strong>Precio:</strong> {price}</p>
           <p><strong>Ubicación:</strong> {location}</p>
           <p><strong>Descripción:</strong> {description}</p>
+          <p><strong>Habitaciones:</strong> {rooms}</p>
+          <p><strong>Baños:</strong> {bathrooms}</p>
+          <p><strong>Comodidades:</strong> {amenities.join(', ')}</p>
+          <p><strong>Servicios:</strong> {services.join(', ')}</p>
           <a href="http://localhost:3000/contact" className="contact-button">Contactar</a>
         </div>
       </div>
@@ -40,6 +55,7 @@ const ImageCarousel = ({ images, onClose, title, price, location, description })
 };
 
 export default ImageCarousel;
+
 
 
 

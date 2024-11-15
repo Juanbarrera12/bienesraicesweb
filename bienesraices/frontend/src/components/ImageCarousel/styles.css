@@ -11,6 +11,7 @@
   justify-content: center;
   z-index: 1000;
   pointer-events: auto;
+  will-change: transform;
 }
 
 .carousel-content {
@@ -22,6 +23,7 @@
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
   pointer-events: auto;
+  overflow: hidden;
 }
 
 .carousel-images {
@@ -37,6 +39,8 @@
   max-height: 80vh;
   object-fit: cover;
   border-radius: 10px 0 0 10px;
+  transition: transform 0.3s ease; /* Animación suave */
+  will-change: transform;
 }
 
 .carousel-info {
@@ -45,6 +49,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow-y: auto;
 }
 
 .carousel-info h2 {
@@ -113,22 +118,11 @@
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  display: flex;           /* Añadido */
-  align-items: center;     /* Añadido */
+  display: flex; /* Añadido */
+  align-items: center; /* Añadido */
   justify-content: center; /* Añadido */
-  line-height: 1;         /* Añadido */
-  padding: 0;             /* Añadido */
-}
-
-/* Si es necesario, podemos ajustar específicamente el contenido */
-.carousel-prev span,
-.carousel-next span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  margin-top: 0px; /* Ajuste fino si es necesario */
+  line-height: 1; /* Añadido */
+  padding: 0; /* Añadido */
 }
 
 .carousel-prev {
@@ -205,4 +199,5 @@
     padding: 0.5rem;
   }
 }
+
 
