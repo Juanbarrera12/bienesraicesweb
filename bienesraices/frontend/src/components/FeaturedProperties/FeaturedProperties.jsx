@@ -1,30 +1,16 @@
 // src/components/FeaturedProperties/FeaturedProperties.jsx
-import React from 'react';
-import './styles.css'; // Importa el archivo CSS
-
-// Importa la imagen correctamente desde tu directorio de activos
-<img src="/images/1.jpg" alt="Descripción" />
-
- // Cambia la ruta si es necesario
+import React, { memo } from 'react';
+import './styles.css';
 
 const FeaturedProperties = () => {
-  // Datos de propiedades para renderizado dinámico
   const properties = [
-    {
-      title: 'Localidad 1',
-      listings: '25 listas',
-      image: '/images/1.jpg', // Cambia las imágenes si tienes más
-    },
-    {
-      title: 'Localidad 2',
-      listings: '18 listas',
-      image: '/images/2.jpg', // Cambia las imágenes si tienes más
-    },
+    { title: 'Localidad 1', listings: '25 listas', image: '/images/1.jpg' },
+    { title: 'Localidad 2', listings: '18 listas', image: '/images/2.jpg' },
   ];
 
   return (
-    <section className="properties-area">
-      <h2>Propiedades Destacadas</h2>
+    <section className="properties-area" aria-labelledby="featured-properties">
+      <h2 id="featured-properties">Propiedades Destacadas</h2>
       <p>Encuentra las mejores propiedades en las ubicaciones más exclusivas.</p>
       <div className="properties-grid">
         {properties.map((property, index) => (
@@ -32,10 +18,12 @@ const FeaturedProperties = () => {
             <div
               className="property-card-image"
               style={{ backgroundImage: `url(${property.image})` }}
+              role="img"
+              aria-label={`Imagen de ${property.title}`}
             ></div>
             <div className="property-card-content">
-              <div className="property-card-title">{property.title}</div>
-              <div className="property-card-listings">{property.listings}</div>
+              <h3 className="property-card-title">{property.title}</h3>
+              <p className="property-card-listings">{property.listings}</p>
             </div>
           </div>
         ))}
@@ -44,4 +32,5 @@ const FeaturedProperties = () => {
   );
 };
 
-export default FeaturedProperties;
+export default memo(FeaturedProperties);
+

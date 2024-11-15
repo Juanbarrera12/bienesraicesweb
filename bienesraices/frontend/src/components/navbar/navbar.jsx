@@ -1,5 +1,5 @@
 // src/components/navbar/navbar.jsx
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css';
 
@@ -11,27 +11,38 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" aria-label="Primary navigation">
       <div className="navbar-main">
-        <Link to="http://localhost:3000/" className="logo">
+        <Link to="/" className="logo" aria-label="Inicio">
           RealState
         </Link>
-        <span className="menu-toggle" onClick={toggleMenu}>☰</span>
-        <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
-          <li>
+        <button
+          className="menu-toggle"
+          aria-expanded={menuOpen}
+          aria-controls="navigation-menu"
+          onClick={toggleMenu}
+        >
+          ☰
+        </button>
+        <ul
+          id="navigation-menu"
+          className={`nav-links ${menuOpen ? 'active' : ''}`}
+          role="menu"
+        >
+          <li role="menuitem">
             <Link to="/" onClick={toggleMenu}>Inicio</Link>
           </li>
-          <li>
+          <li role="menuitem">
             <Link to="/propiedades" onClick={toggleMenu}>Propiedades</Link>
           </li>
-          <li>
+          <li role="menuitem">
             <Link to="/SobreNosotros" onClick={toggleMenu}>Nosotros</Link>
           </li>
-          <li>
+          <li role="menuitem">
             <Link to="/contact" onClick={toggleMenu}>Contacto</Link>
           </li>
         </ul>
-        <button className="add-listing">
+        <button className="add-listing" aria-label="Iniciar Sesión">
           Iniciar Sesión
         </button>
       </div>
@@ -39,4 +50,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

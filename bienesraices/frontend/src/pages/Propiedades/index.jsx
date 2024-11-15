@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../../components/navbar/navbar';
-import SearchBar from '../../components/searchbar/SearchBar';
 import PropertyCard from '../../components/PropertyCard/PropertyCard';
 import ImageCarousel from '../../components/ImageCarousel/ImageCarousel';
 import './styles.css';
@@ -44,7 +43,6 @@ const Propiedades = () => {
     <div className="propiedades-page">
       <Navbar />
       <h1>Propiedades</h1>
-      <SearchBar />
       <div className="properties-grid">
         {properties.map((property) => (
           <PropertyCard

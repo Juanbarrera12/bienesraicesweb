@@ -117,6 +117,7 @@
   animation: textContentFadeIn 1s ease-out forwards;
 }
 
+/* Títulos y Subtítulos */
 .re-text-content h1 {
   font-size: 2rem;
   font-weight: bold;
@@ -135,6 +136,7 @@
   animation: subheadingFadeIn 1s ease-out forwards 0.7s;
 }
 
+/* Párrafos */
 .re-text-content p {
   font-size: 1rem;
   line-height: 1.6;
@@ -146,6 +148,11 @@
 
 .re-text-content strong {
   font-weight: bold;
+  color: #333;
+}
+
+.re-text-content em {
+  font-style: italic;
   color: #333;
 }
 
@@ -250,3 +257,4 @@
     padding: 0 10px;
   }
 }
+

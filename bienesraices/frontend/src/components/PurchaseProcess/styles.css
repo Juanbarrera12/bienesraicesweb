@@ -1,0 +1,105 @@
+.purchase-process {
+    padding: 4rem 2rem;
+    text-align: center;
+    background-color: #f4f7fb; /* Fondo más claro */
+  }
+  
+  .purchase-process h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+  
+  .process-steps {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .step {
+    flex: 1;
+    max-width: 300px;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #4d90fe; /* Línea superior de color */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    text-align: center;
+  }
+  
+  .step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  .step h3 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .step p {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  /* Icono de paso */
+  .step-icon {
+    font-size: 2.5rem; /* Icono más grande */
+    color: #4d90fe;
+    margin-bottom: 1rem;
+  }
+  
+  /* Animación de aparición */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(40px); /* Mayor desplazamiento inicial para hacer la animación más visible */
+    transition: opacity 1s ease-out, transform 1s ease-out;
+  }
+  
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    .process-steps {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  
+    .step {
+      max-width: 100%;
+    }
+  
+    .purchase-process h2 {
+      font-size: 1.8rem;
+    }
+  
+    .step h3 {
+      font-size: 1.2rem;
+    }
+  
+    .step-icon {
+      font-size: 2rem; /* Tamaño del icono más pequeño en pantallas pequeñas */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .purchase-process h2 {
+      font-size: 1.6rem;
+    }
+  
+    .step p {
+      font-size: 0.9rem;
+    }
+  }
+  

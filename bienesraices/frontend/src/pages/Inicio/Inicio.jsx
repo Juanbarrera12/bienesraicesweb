@@ -1,7 +1,10 @@
 // src/pages/Inicio.jsx
-import React from 'react';
+import React, { memo } from 'react';
 import HeroSection from '../../components/HeroSection/HeroSection';
 import FeaturedProperties from '../../components/FeaturedProperties/FeaturedProperties';
+import BenefitsSection from '../../components/BenefitsSection/BenefitsSection';
+import PopularAreas from '../../components/PopularAreas/PopularAreas';
+import PurchaseProcess from '../../components/PurchaseProcess/PurchaseProcess';
 import Navbar from '../../components/navbar/navbar';
 
 const Inicio = () => {
@@ -13,8 +16,12 @@ const Inicio = () => {
         subtitle="Propiedades exclusivas a tu alcance"
       />
       <FeaturedProperties />
+      <BenefitsSection />
+      <PurchaseProcess />
+      <PopularAreas />
     </div>
   );
 };
 
-export default Inicio;
+export default memo(Inicio);
+
