@@ -1,19 +1,24 @@
-// PropertyFilter.jsx
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
+import { FaTimes } from 'react-icons/fa';
+import "./styles.css" // Asegúrate de tener la importación del ícono
 
 function PropertyFilter({ onFilter }) {
   const [filters, setFilters] = useState({
     amenities: [],
     locations: [],
     types: [],
+    services: [],
   });
 
   const [selectedFilters, setSelectedFilters] = useState({
     location: '',
     type: '',
     amenities: [],
+    services: [],
+    rooms: '',
+    bathrooms: '',
   });
 
   useEffect(() => {
@@ -29,46 +34,99 @@ function PropertyFilter({ onFilter }) {
     fetchFilterOptions();
   }, []);
 
-  // Manejador de cambios en los filtros
-  const handleChange = (selectedOption, { name }) => {
-    setSelectedFilters(prev => ({
-      ...prev,
-      [name]: selectedOption ? selectedOption.value : '',
-    }));
+  const handleSelectChange = (selectedOption, { name }) => {
+    let value;
+    if (Array.isArray(selectedOption)) {
+      value = selectedOption.map(opt => opt.value);
+    } else {
+      value = selectedOption ? selectedOption.value : '';
+    }
+
+    const updatedFilters = { ...selectedFilters, [name]: value };
+    setSelectedFilters(updatedFilters);
+    onFilter(updatedFilters);
   };
 
-  // Enviar los filtros seleccionados al componente padre (Propiedades)
-  const handleApplyFilters = () => {
-    onFilter(selectedFilters);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    const updatedFilters = { ...selectedFilters, [name]: value ? Number(value) : '' };
+    setSelectedFilters(updatedFilters);
+    onFilter(updatedFilters);
+  };
+
+  const clearAllFilters = () => {
+    const emptyFilters = {
+      location: '',
+      type: '',
+      amenities: [],
+      services: [],
+      rooms: '',
+      bathrooms: '',
+    };
+    setSelectedFilters(emptyFilters);
+    onFilter(emptyFilters);
   };
 
   return (
     <div className="property-filter">
       <Select
         name="location"
-        options={filters.locations.map(location => ({ value: location, label: location }))}
+        options={(filters.locations || []).map(location => ({ value: location, label: location }))}
         placeholder="Selecciona una ubicación"
-        onChange={handleChange}
+        onChange={handleSelectChange}
+        value={selectedFilters.location ? { value: selectedFilters.location, label: selectedFilters.location } : null}
       />
+
       <Select
         name="type"
-        options={filters.types.map(type => ({ value: type, label: type }))}
+        options={(filters.types || []).map(type => ({ value: type, label: type }))}
         placeholder="Selecciona un tipo de propiedad"
-        onChange={handleChange}
+        onChange={handleSelectChange}
+        value={selectedFilters.type ? { value: selectedFilters.type, label: selectedFilters.type } : null}
       />
+
       <Select
         name="amenities"
-        options={filters.amenities.map(amenity => ({ value: amenity, label: amenity }))}
+        options={(filters.amenities || []).map(amenity => ({ value: amenity, label: amenity }))}
         isMulti
         placeholder="Selecciona amenities"
-        onChange={handleChange}
+        onChange={(selectedOption) => handleSelectChange(selectedOption, { name: 'amenities' })}
+        value={selectedFilters.amenities.map(amenity => ({ value: amenity, label: amenity }))}
       />
-      <button onClick={handleApplyFilters}>Filtrar</button>
+
+      <Select
+        name="services"
+        options={(filters.services || []).map(service => ({ value: service, label: service }))}
+        isMulti
+        placeholder="Selecciona servicios"
+        onChange={(selectedOption) => handleSelectChange(selectedOption, { name: 'services' })}
+        value={selectedFilters.services.map(service => ({ value: service, label: service }))}
+      />
+
+      <input
+        type="number"
+        name="rooms"
+        placeholder="Número de habitaciones"
+        value={selectedFilters.rooms}
+        onChange={handleInputChange}
+        min="0"
+      />
+
+      <input
+        type="number"
+        name="bathrooms"
+        placeholder="Número de baños"
+        value={selectedFilters.bathrooms}
+        onChange={handleInputChange}
+        min="0"
+      />
+
+      {/* Botón único para eliminar todos los filtros */}
+      <button onClick={clearAllFilters} className="clear-all-btn">
+        Eliminar filtros <FaTimes />
+      </button>
     </div>
   );
 }
 
 export default PropertyFilter;
-
-
-

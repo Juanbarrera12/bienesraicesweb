@@ -59,7 +59,6 @@ const Propiedades = () => {
 
   if (loading) return <p>Cargando propiedades...</p>;
   if (error) return <p>{error}</p>;
-  if (filteredProperties.length === 0) return <p>No hay propiedades disponibles.</p>;
 
   return (
     <div className="propiedades-page">
@@ -68,6 +67,13 @@ const Propiedades = () => {
 
       {/* Componente PropertyFilter */}
       <PropertyFilter onFilter={filterProperties} />
+
+      {/* Mostrar el mensaje si no hay propiedades */}
+      {filteredProperties.length === 0 && (
+        <div className="no-properties-message">
+          <p>No se encontraron propiedades que coincidan con los filtros.</p>
+        </div>
+      )}
 
       <div className="properties-grid">
         {filteredProperties.map((property) => (
@@ -91,8 +97,3 @@ const Propiedades = () => {
 };
 
 export default Propiedades;
-
-
-
-
-
