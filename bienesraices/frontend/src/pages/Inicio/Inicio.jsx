@@ -3,7 +3,6 @@ import React, { memo } from 'react';
 import HeroSection from '../../components/HeroSection/HeroSection';
 import FeaturedProperties from '../../components/FeaturedProperties/FeaturedProperties';
 import BenefitsSection from '../../components/BenefitsSection/BenefitsSection';
-import PopularAreas from '../../components/PopularAreas/PopularAreas';
 import PurchaseProcess from '../../components/PurchaseProcess/PurchaseProcess';
 import Navbar from '../../components/navbar/navbar';
 
@@ -18,7 +17,6 @@ const Inicio = () => {
       <FeaturedProperties />
       <BenefitsSection />
       <PurchaseProcess />
-      <PopularAreas />
     </div>
   );
 };

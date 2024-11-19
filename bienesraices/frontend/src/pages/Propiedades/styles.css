@@ -3,10 +3,14 @@
     text-align: center;
   }
   
-  .properties-grid {
+.properties-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas iguales */
+    gap: 20px; /* Espaciado entre tarjetas */
+    padding: 20px;
+    box-sizing: border-box;
+    max-width: 1200px; /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centrar el grid */
   }
+  
   
