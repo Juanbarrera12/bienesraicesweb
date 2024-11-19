@@ -1,0 +1,69 @@
+.about-container {
+    padding-top: 80px; /* Ajuste para compensar el navbar fijo */
+    min-height: calc(100vh - 80px); /* Altura ajustada para evitar overflow */
+    text-align: center;
+    background-color: #f9f9f9;
+    color: #333;
+    display: flex; /* Activa flexbox */
+    flex-direction: column; /* Organiza los elementos verticalmente */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    box-sizing: border-box; /* Asegura que el padding no incremente la altura */
+  }
+  
+  .about-title {
+    font-size: 2.2rem; /* Tamaño ajustado del título */
+    font-weight: bold;
+    margin: 0 0 20px; /* Reduce el margen superior */
+    color: #4a4a4a;
+  }
+  
+  .about-description {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 40px; /* Reduce el margen inferior */
+    line-height: 1.5;
+  }
+  
+  .about-values {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px; /* Reducimos el espacio entre las tarjetas */
+  }
+  
+  .value-card {
+    background: white;
+    padding: 15px; /* Reducimos el padding interno */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1 1 calc(33.333% - 15px); /* Ajuste flexible para tarjetas */
+    max-width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .value-icon {
+    font-size: 2.5rem; /* Reducimos el tamaño del ícono */
+    color: #a57c55; /* Marrón cálido */
+    margin-bottom: 10px; /* Reducimos el espacio debajo del ícono */
+  }
+  
+  .value-card h3 {
+    font-size: 1.3rem; /* Reducimos el tamaño del texto */
+    margin-bottom: 8px;
+    color: #4a4a4a;
+  }
+  
+  .value-card p {
+    font-size: 0.95rem; /* Reducimos el tamaño de texto en el párrafo */
+    color: #555;
+    line-height: 1.4;
+  }
+  
+  

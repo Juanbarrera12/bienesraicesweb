@@ -1,0 +1,44 @@
+/* App.css - Estilos Globales */
+body {
+  margin: 0;
+  padding-top: 70px; /* Mismo tamaño que el navbar */
+  box-sizing: border-box;
+  overflow-x: hidden; /* Evita scroll horizontal innecesario */
+}
+
+/* Personalizar la scrollbar */
+body::-webkit-scrollbar {
+  width: 12px; /* Ancho de la barra */
+}
+
+body::-webkit-scrollbar-track {
+  background: #f4f4f4; /* Fondo de la scrollbar */
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #a57c55; /* Color de la barra */
+  border-radius: 10px;
+  border: 2px solid #f4f4f4; /* Borde alrededor del thumb */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #8c5e3c; /* Color al pasar el cursor */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+
