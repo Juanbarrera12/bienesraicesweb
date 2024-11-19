@@ -94,14 +94,6 @@ function PropertyFilter({ onFilter }) {
         value={selectedFilters.amenities.map(amenity => ({ value: amenity, label: amenity }))}
       />
 
-      <Select
-        name="services"
-        options={(filters.services || []).map(service => ({ value: service, label: service }))}
-        isMulti
-        placeholder="Selecciona servicios"
-        onChange={(selectedOption) => handleSelectChange(selectedOption, { name: 'services' })}
-        value={selectedFilters.services.map(service => ({ value: service, label: service }))}
-      />
 
       <input
         type="number"

@@ -196,7 +196,11 @@ body {
     text-align: center;
     max-width: 1200px;
     margin: 0 auto;
+    display: flex; /* Nuevo */
+    justify-content: center; /* Nuevo */
+    flex-wrap: wrap; /* Asegura que los elementos se envuelvan si es necesario */
 }
+
 
 .properties-area h2 {
     font-size: 2rem;
@@ -213,7 +217,6 @@ body {
 
 .properties-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
     padding: 1rem;
 }

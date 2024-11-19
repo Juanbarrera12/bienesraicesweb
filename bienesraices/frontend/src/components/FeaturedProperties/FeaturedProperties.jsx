@@ -27,12 +27,12 @@ const FeaturedProperties = () => {
     <section className="properties-area" aria-labelledby="featured-properties">
       <h2 id="featured-properties">Propiedades Destacadas</h2>
       <p>Encuentra las mejores propiedades en las ubicaciones más exclusivas.</p>
-      <div className="properties-grid">
+      <div className="propiedades-grid">
         {properties.length === 0 ? (
           <p>No se encontraron propiedades destacadas.</p>
         ) : (
           properties.map((property, index) => (
-            <PropertyCard key={index} property={property} />
+            <PropertyCard key={property.id || index} property={property} className="custom-property-card" />
           ))
         )}
       </div>
@@ -41,6 +41,3 @@ const FeaturedProperties = () => {
 };
 
 export default memo(FeaturedProperties);
-
-
-
