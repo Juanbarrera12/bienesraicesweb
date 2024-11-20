@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/navbar/navbar';
 import './styles.css';
+import Footer from '../../components/Footer/footer';
+
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -110,6 +112,7 @@ const ContactForm = () => {
           <button type="submit">Enviar</button>
         </form>
       </section>
+      <Footer />
     </>
   );
 };

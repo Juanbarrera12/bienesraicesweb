@@ -5,6 +5,7 @@ import FeaturedProperties from '../../components/FeaturedProperties/FeaturedProp
 import BenefitsSection from '../../components/BenefitsSection/BenefitsSection';
 import PurchaseProcess from '../../components/PurchaseProcess/PurchaseProcess';
 import Navbar from '../../components/navbar/navbar';
+import Footer from '../../components/Footer/footer';
 
 const Inicio = () => {
   return (
@@ -17,6 +18,8 @@ const Inicio = () => {
       <FeaturedProperties />
       <BenefitsSection />
       <PurchaseProcess />
+      <Footer />
+      
     </div>
   );
 };

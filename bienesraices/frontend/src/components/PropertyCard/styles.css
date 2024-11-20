@@ -1,3 +1,11 @@
+/* Reset general para evitar desbordamientos */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Previene desbordamiento horizontal */
+}
+
 /* Contenedor principal de las propiedades */
 .property-grid {
   display: grid;
@@ -5,9 +13,10 @@
   gap: 20px; /* Espaciado entre tarjetas */
   padding: 20px;
   box-sizing: border-box;
-  max-width: 1200px;
-  margin: 0 auto; /* Centrar el grid */
+  max-width: 1200px; /* Ancho máximo del contenedor */
+  margin: 0 auto; /* Centrar el grid horizontalmente */
   grid-auto-flow: row; /* Asegura que los elementos fluyan hacia abajo */
+  width: calc(100% - 40px); /* Asegura que haya espacio igual a la izquierda y derecha */
 }
 
 /* Tarjeta de propiedad */
@@ -21,10 +30,10 @@
   position: relative;
   z-index: 1;
   height: 500px;
-  width: 400px; /* Altura fija para mantener todas las tarjetas iguales */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Efecto hover */
 .property-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
@@ -65,6 +74,7 @@
   letter-spacing: 1px;
 }
 
+/* Ajustes de estilos */
 .property-card-price {
   font-size: 1rem;
   color: #007bff;
@@ -80,109 +90,33 @@
   align-items: center;
 }
 
-.property-card-location .react-icons {
-  margin-right: 0.6rem;
-  color: #00aaff;
-}
-
 .property-card-description {
   font-size: 0.9rem;
   color: #777;
-  height: 60px; /* Mantén una altura fija para la descripción */
+  height: 60px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-bottom: 0.8rem;
 }
 
-/* Estilos del Carrusel */
-.carousel-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1000;
-  background: rgba(0, 0, 0, 0.85);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.carousel-close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: transparent;
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  color: #fff;
-}
-
-.carousel-prev,
-.carousel-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  color: #fff;
-  padding: 0.5rem;
-}
-
-.carousel-prev {
-  left: 10px;
-}
-
-.carousel-next {
-  right: 10px;
-}
-
-.carousel-prev:hover,
-.carousel-next:hover {
-  background: rgba(0, 0, 0, 0.3);
-}
-
-/* Botón de Contacto */
-.contact-button {
-  margin-top: 1rem;
-  padding: 0.75rem;
-  font-size: 1rem;
-  color: #fff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  width: 100%;
-  text-decoration: none;
-}
-
-.contact-button:hover {
-  background-color: #0056b3;
-}
-
 /* Estilo Responsivo */
 @media (max-width: 1024px) {
   .property-grid {
     grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas medianas */
+    width: calc(100% - 40px); /* Mantén el mismo espaciado */
   }
 }
 
 @media (max-width: 768px) {
   .property-grid {
     grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    padding: 10px; /* Reduce el padding para dispositivos pequeños */
+    width: calc(100% - 20px); /* Ajusta el ancho en dispositivos pequeños */
   }
 
   .property-image-container {
-    height: 180px;
-  }
-
-  .property-card-content {
-    padding: 1rem;
+    height: 180px; /* Ajusta altura de imágenes en dispositivos pequeños */
   }
 
   .property-card-title {
@@ -194,31 +128,4 @@
   .property-card-description {
     font-size: 0.8rem;
   }
-
-  .carousel-content {
-    flex-direction: column;
-    width: 90%;
-  }
-
-  .carousel-image {
-    max-height: 50vh;
-    border-radius: 10px;
-  }
-
-  .carousel-info {
-    width: 100%;
-    padding: 1rem;
-    text-align: center;
-  }
-
-  .carousel-prev,
-  .carousel-next {
-    font-size: 1.8rem;
-    width: 40px;
-    height: 40px;
-  }
 }
-
-
-
-

@@ -3,6 +3,7 @@ import React from 'react';
 import { FaWhatsapp, FaFacebook, FaEnvelope } from 'react-icons/fa';
 import Navbar from "../../components/navbar/navbar";
 import './styles.css';
+import Footer from '../../components/Footer/footer';
 
 const RealEstateSection = () => {
   return (
@@ -71,6 +72,7 @@ const RealEstateSection = () => {
           </p>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

@@ -5,6 +5,7 @@ import PropertyCard from '../../components/PropertyCard/PropertyCard';
 import ImageCarousel from '../../components/ImageCarousel/ImageCarousel';
 import PropertyFilter from '../../components/PropertyFilter/PropertyFilter'; // Importar el PropertyFilter
 import './styles.css';
+import Footer from '../../components/Footer/footer';
 
 const Propiedades = () => {
   const [properties, setProperties] = useState([]);
@@ -92,6 +93,7 @@ const Propiedades = () => {
           isFullscreen={true} // Modo pantalla completa
         />
       )}
+      <Footer />
     </div>
   );
 };
