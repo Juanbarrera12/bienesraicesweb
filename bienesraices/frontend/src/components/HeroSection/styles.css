@@ -1,32 +1,13 @@
-:root {
-  --hero-height: 100vh; /* Toma toda la altura de la ventana */
-  --hero-min-height: 600px;
-  --text-color: #fff;
-  --overlay-color: rgba(0, 0, 0, 0.5);
-  --font-size-large: 3rem;
-  --font-size-medium: 1.5rem;
-  --font-size-small: 1rem;
-  --max-width: 800px;
-  --search-bar-width: 90%;
-  --search-bar-max-width: 800px;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --border-radius: 8px;
-}
-
 .hero {
-  height: var(--hero-height);
-  min-height: var(--hero-min-height);
-  background-image: url('../../images/casa.jpg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  height: 100vh; /* Toma toda la altura de la ventana */
+  min-height: 600px; /* Altura mínima */
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  position: relative;
-  color: var(--text-color);
-  overflow: hidden;
+  color: #fff; /* Color del texto */
+  overflow: hidden; /* Asegura que nada sobresalga del contenedor */
 }
 
 .hero::before {
@@ -34,92 +15,53 @@
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--overlay-color);
-  z-index: 1;
+  width: 100%; /* Cubre todo el ancho del contenedor */
+  height: 100%; /* Cubre toda la altura del contenedor */
+  background-image: url('../../images/casa.avif'); /* Imagen de fondo */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: brightness(50%); /* Oscurece la imagen */
+  z-index: 1; /* Asegura que el overlay esté detrás del contenido */
 }
 
-.hero-overlay {
+.hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 2; /* Coloca el texto por encima del overlay */
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%; /* Ocupa toda la altura del contenedor Hero */
+  max-width: 800px; /* Ancho máximo para el contenido */
 }
 
-.hero-text {
-  color: var(--text-color);
-  text-align: center;
-  max-width: var(--max-width);
-  z-index: 2;
-  margin: 0 auto;
-}
-
-.hero-text h1 {
-  font-size: var(--font-size-large);
+.hero-content h1 {
+  font-size: 3rem;
   margin-bottom: 1rem;
-  line-height: 1.2;
+  color: #fff; /* Título en blanco */
 }
 
-.hero-text p {
-  font-size: var(--font-size-medium);
+.hero-content p {
+  font-size: 1.5rem;
   line-height: 1.6;
+  color: #aaa; /* Subtítulo en blanco */
 }
 
-.hero-subtitle {
-  color: #ffffff;
-  font-size: 1.2rem;
-  margin-top: 0.5rem;
-}
-
-#hero-title {
-  color: #ffffff;
-}
-
-/* Responsivo */
-@media screen and (max-width: 1024px) {
-  .hero-text h1 {
-    font-size: 2.5rem; /* Ajusta el tamaño del texto principal */
+/* Responsivo para pantallas medianas */
+@media screen and (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
   }
 
-  .hero-text p {
+  .hero-content p {
     font-size: 1.2rem;
   }
 }
 
-@media screen and (max-width: 768px) {
-  .hero {
-    padding: 1rem;
-  }
-
-  .hero-text h1 {
+/* Responsivo para pantallas pequeñas */
+@media screen and (max-width: 480px) {
+  .hero-content h1 {
     font-size: 2rem;
   }
 
-  .hero-text p {
+  .hero-content p {
     font-size: 1rem;
-    line-height: 1.4;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .hero {
-    padding: 0.5rem;
-  }
-
-  .hero-text h1 {
-    font-size: 1.8rem;
-  }
-
-  .hero-text p {
-    font-size: var(--font-size-small);
-  }
-
-  .hero-subtitle {
-    font-size: 0.9rem;
   }
 }

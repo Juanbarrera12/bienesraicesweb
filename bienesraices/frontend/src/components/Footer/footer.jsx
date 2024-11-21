@@ -5,7 +5,6 @@ import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaEnvelope, FaPhoneAlt 
 const Footer = () => {
   return (
     <footer className="footer" aria-labelledby="footer-title">
-      <h2 id="footer-title" className="visually-hidden">Información del pie de página</h2>
       <div className="footer-container">
         {/* Columna del mapa */}
         <div className="footer-column" aria-labelledby="footer-location-title">

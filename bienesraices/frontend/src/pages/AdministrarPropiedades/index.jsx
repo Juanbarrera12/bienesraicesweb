@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
-import Select from 'react-select';
 import './styles.css';
 
 const AdministrarPropiedades = () => {
@@ -33,7 +32,7 @@ const AdministrarPropiedades = () => {
       try {
         if (!token) {
           setIsAuthenticated(false);
-          setIsCheckingAuth(false); // Finaliza la verificación
+          setIsCheckingAuth(false);
           return;
         }
 
@@ -49,24 +48,18 @@ const AdministrarPropiedades = () => {
       } catch (error) {
         setIsAuthenticated(false);
       } finally {
-        setIsCheckingAuth(false); // Finaliza la verificación en cualquier caso
+        setIsCheckingAuth(false);
       }
     };
 
     verifyAuthentication();
   }, []);
 
-  // Mostrar un loader mientras se verifica la autenticación
-  if (isCheckingAuth) {
-    return <div>Cargando...</div>;
-  }
+  // Cargar propiedades
+  useEffect(() => {
+    fetchProperties();
+  }, []);
 
-  // Redirigir al login si no está autenticado
-  if (!isAuthenticated) {
-    return <Navigate to="/login" />;
-  }
-
-  // Función para cargar propiedades
   const fetchProperties = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/properties', {
@@ -79,7 +72,14 @@ const AdministrarPropiedades = () => {
     }
   };
 
-  // Función para agregar una nueva propiedad
+  if (isCheckingAuth) {
+    return <div>Cargando...</div>;
+  }
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+
   const handleAddProperty = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -123,7 +123,6 @@ const AdministrarPropiedades = () => {
     setEditingProperty(null);
   };
 
-  // Función para eliminar una propiedad
   const handleDeleteProperty = async (id) => {
     try {
       await axios.delete(`http://localhost:5000/api/properties/${id}`, {
@@ -136,13 +135,11 @@ const AdministrarPropiedades = () => {
     }
   };
 
-  // Función para editar una propiedad
   const handleEditProperty = (property) => {
     setEditingProperty(property);
     setNewProperty(property);
   };
 
-  // Función para guardar los cambios en una propiedad editada
   const handleSaveEdit = async (e) => {
     e.preventDefault();
     try {
@@ -166,6 +163,7 @@ const AdministrarPropiedades = () => {
 
   return (
     <div className="admin-panel">
+      
       <h2>Panel de Administración</h2>
 
       <form onSubmit={editingProperty ? handleSaveEdit : handleAddProperty}>
@@ -178,27 +176,15 @@ const AdministrarPropiedades = () => {
           }
           required
         />
-
-        <Select
-          options={[
-            { value: 'Casa', label: 'Casa' },
-            { value: 'Departamento', label: 'Departamento' },
-          ]}
-          className="basic-select"
-          placeholder="Selecciona Tipo de Propiedad"
-          onChange={(selectedOption) =>
-            setNewProperty({
-              ...newProperty,
-              type: selectedOption ? selectedOption.value : '',
-            })
+        <input
+          type="text"
+          placeholder="Tipo"
+          value={newProperty.type}
+          onChange={(e) =>
+            setNewProperty({ ...newProperty, type: e.target.value })
           }
-          value={
-            newProperty.type
-              ? { value: newProperty.type, label: newProperty.type }
-              : null
-          }
+          required
         />
-
         <input
           type="text"
           placeholder="Precio"
@@ -235,49 +221,6 @@ const AdministrarPropiedades = () => {
           }
           required
         />
-
-        <Select
-          isMulti
-          options={[
-            { value: 'Piscina', label: 'Piscina' },
-            { value: 'Gimnasio', label: 'Gimnasio' },
-          ]}
-          placeholder="Selecciona Comodidades"
-          onChange={(selectedOptions) =>
-            setNewProperty({
-              ...newProperty,
-              amenities: selectedOptions
-                ? selectedOptions.map((option) => option.value)
-                : [],
-            })
-          }
-          value={newProperty.amenities.map((amenity) => ({
-            value: amenity,
-            label: amenity,
-          }))}
-        />
-
-        <Select
-          isMulti
-          options={[
-            { value: 'Agua', label: 'Agua' },
-            { value: 'Luz', label: 'Luz' },
-          ]}
-          placeholder="Selecciona Servicios"
-          onChange={(selectedOptions) =>
-            setNewProperty({
-              ...newProperty,
-              services: selectedOptions
-                ? selectedOptions.map((option) => option.value)
-                : [],
-            })
-          }
-          value={newProperty.services.map((service) => ({
-            value: service,
-            label: service,
-          }))}
-        />
-
         <textarea
           placeholder="Descripción"
           value={newProperty.description}

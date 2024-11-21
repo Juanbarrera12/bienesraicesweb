@@ -74,7 +74,7 @@ const Propiedades = () => {
   }, [properties]);
 
   if (loading) {
-    return <p className="loading-message" aria-live="polite">Cargando propiedades...</p>;
+    return <p></p>;
   }
 
   if (error) {

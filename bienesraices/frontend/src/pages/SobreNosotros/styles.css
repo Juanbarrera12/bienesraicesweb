@@ -71,7 +71,7 @@ body {
 
 .about-image {
   width: 40%;
-  max-height: 500px;
+  max-height: 450px;
   object-fit: cover;
   border-radius: 8px;
   margin-top: 1rem;
@@ -92,6 +92,10 @@ body {
   font-size: 1.1rem;
   line-height: 1.6;
   color: #555;
+}
+
+strong {
+  color: #333;
 }
 
 /* Fondos personalizados */
