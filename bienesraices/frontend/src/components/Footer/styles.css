@@ -1,7 +1,7 @@
 .footer {
   background-color: #222;
   color: #fff;
-  padding: 30px 0;
+  padding: 3rem 1rem; /* Ajuste de paddings para adaptarse mejor */
   text-align: center;
 }
 
@@ -17,21 +17,23 @@
 
 .footer-column {
   flex: 1;
-  max-width: 300px;
+  max-width: 280px; /* Ajuste del tamaño máximo */
   text-align: left;
 }
 
 .footer-column h4 {
   margin-bottom: 15px;
-  font-size: 1.2rem;
+  font-size: 1.3rem; /* Tamaño ligeramente mayor */
   border-bottom: 2px solid #007bff;
   display: inline-block;
   padding-bottom: 5px;
+  color: #fff;
 }
 
 .footer-column p {
   margin: 5px 0;
-  font-size: 0.9rem;
+  font-size: 1rem; /* Tamaño de texto más legible */
+  color: #ddd; /* Mejor contraste con el fondo oscuro */
 }
 
 .footer-column iframe {
@@ -59,11 +61,23 @@
 
 .footer-rights {
   margin-top: 30px;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   opacity: 0.8;
+  color: #aaa; /* Texto más tenue */
 }
 
 /* Responsividad */
+@media (max-width: 1024px) {
+  .footer-container {
+    flex-wrap: wrap;
+    justify-content: center; /* Centrar los elementos */
+  }
+
+  .footer-column {
+    max-width: 45%; /* Ajuste para tablets */
+  }
+}
+
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;
@@ -75,8 +89,34 @@
     text-align: center;
   }
 
+  .footer-column h4 {
+    font-size: 1.2rem; /* Tamaño ajustado para pantallas pequeñas */
+  }
+
+  .footer-column p {
+    font-size: 0.9rem; /* Reducir ligeramente el tamaño del texto */
+  }
+
   .footer-rights {
     margin-top: 20px;
+    font-size: 0.8rem;
   }
 }
 
+@media (max-width: 480px) {
+  .footer-column h4 {
+    font-size: 1rem;
+  }
+
+  .footer-column p {
+    font-size: 0.8rem;
+  }
+
+  .social-icons a {
+    font-size: 1.2rem; /* Íconos más pequeños en pantallas pequeñas */
+  }
+
+  .footer-rights {
+    font-size: 0.7rem;
+  }
+}

@@ -23,9 +23,22 @@
 @media (max-width: 768px) {
   .properties-grid {
     grid-template-columns: 1fr; /* Una columna para pantallas pequeñas */
+    padding: 10px; /* Reducir el padding en pantallas pequeñas */
   }
 
   .propiedades-page {
-    padding-top: 80px; /* Ajustar el espacio superior en pantallas pequeñas */
+    padding-top: 80px; /* Ajustar el espacio superior */
   }
 }
+
+@media (max-width: 480px) {
+  .properties-grid {
+    gap: 15px; /* Reducir el espaciado entre tarjetas en pantallas muy pequeñas */
+    padding: 5px; /* Reducir aún más el padding */
+  }
+
+  .propiedades-page {
+    padding-top: 60px; /* Reducir espacio superior en móviles */
+  }
+}
+

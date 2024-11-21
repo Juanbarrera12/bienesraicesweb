@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi';
-import { HiOutlineX } from 'react-icons/hi';
+import React, { useState, useEffect, useCallback } from 'react';
+import { HiOutlineChevronLeft, HiOutlineChevronRight, HiOutlineX } from 'react-icons/hi';
 import './styles.css';
 
 const ImageCarousel = ({ 
@@ -12,42 +11,83 @@ const ImageCarousel = ({
   description, 
   rooms, 
   bathrooms, 
-  amenities, 
-  services 
+  amenities = [], 
+  services = [] 
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
+  }, [images.length]);
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-  };
+  }, [images.length]);
+
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.key === 'ArrowRight') handleNext();
+      if (e.key === 'ArrowLeft') handlePrev();
+      if (e.key === 'Escape') onClose();
+    },
+    [handleNext, handlePrev, onClose]
+  );
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
 
   return (
-    <div className="carousel-overlay">
+    <div 
+      className="carousel-overlay" 
+      aria-hidden="false" 
+      role="dialog" 
+      aria-labelledby="carousel-title" 
+      aria-describedby="carousel-description"
+    >
       <div className="carousel-content">
-        <button className="carousel-close" onClick={onClose}><HiOutlineX /></button>
+        <button className="carousel-close" onClick={onClose} aria-label="Cerrar carrusel">
+          <HiOutlineX />
+        </button>
         <div className="carousel-images">
-          <button className="carousel-prev" onClick={handlePrev}><HiOutlineChevronLeft /></button>
+          <button 
+            className="carousel-prev" 
+            onClick={handlePrev} 
+            aria-label="Imagen anterior"
+          >
+            <HiOutlineChevronLeft />
+          </button>
           <img
             src={images[currentIndex]}
-            alt={`Slide ${currentIndex + 1}`}
+            alt={`Imagen ${currentIndex + 1} de ${images.length}`}
             className="carousel-image"
+            loading="lazy"
           />
-          <button className="carousel-next" onClick={handleNext}><HiOutlineChevronRight /></button>
+          <button 
+            className="carousel-next" 
+            onClick={handleNext} 
+            aria-label="Imagen siguiente"
+          >
+            <HiOutlineChevronRight />
+          </button>
         </div>
         <div className="carousel-info">
-          <h2>{title}</h2>
+          <h2 id="carousel-title">{title}</h2>
           <p><strong>Precio:</strong> {price}</p>
           <p><strong>Ubicación:</strong> {location}</p>
-          <p><strong>Descripción:</strong> {description}</p>
+          <p id="carousel-description"><strong>Descripción:</strong> {description}</p>
           <p><strong>Habitaciones:</strong> {rooms}</p>
           <p><strong>Baños:</strong> {bathrooms}</p>
-          <p><strong>Comodidades:</strong> {amenities.join(', ')}</p>
-          <p><strong>Servicios:</strong> {services.join(', ')}</p>
-          <a href="http://localhost:3000/contact" className="contact-button">Contactar</a>
+          {amenities.length > 0 && (
+            <p><strong>Comodidades:</strong> {amenities.join(', ')}</p>
+          )}
+          {services.length > 0 && (
+            <p><strong>Servicios:</strong> {services.join(', ')}</p>
+          )}
+          <a href="http://localhost:3000/contact" className="contact-button">
+            Contactar
+          </a>
         </div>
       </div>
     </div>
@@ -55,6 +95,8 @@ const ImageCarousel = ({
 };
 
 export default ImageCarousel;
+
+
 
 
 

@@ -1,9 +1,9 @@
 /* Estilos generales del formulario de contacto */
 .navbar.no-animation {
   animation: none;
-  position: sticky; /* Mantén el navbar fijo */
-  top: 0; /* Posiciónalo siempre visible en la parte superior */
-  z-index: 100; /* Asegúrate de que esté encima del resto del contenido */
+  position: sticky; /* Navbar fijo */
+  top: 0;
+  z-index: 100; /* Siempre visible encima del contenido */
 }
 
 .contact-form {
@@ -18,8 +18,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: contactFadeIn 1s ease-out;
-  overflow: hidden; /* Asegura que las animaciones de hijos no desborden */
+  animation: fadeIn 1s ease-out;
+  overflow: hidden; /* Previene desbordes de elementos animados */
 }
 
 /* Título del formulario */
@@ -28,7 +28,7 @@
   margin-bottom: 1rem;
   color: #333;
   opacity: 0;
-  animation: contactFadeIn 1s ease-out forwards 0.5s;
+  animation: fadeIn 1s ease-out forwards 0.5s;
 }
 
 /* Estilo del formulario */
@@ -39,7 +39,7 @@
   margin-top: 1rem;
   width: 100%;
   max-width: 500px;
-  animation: contactFormFadeIn 1s ease-out;
+  animation: fadeIn 1s ease-out;
 }
 
 /* Estilos de los campos del formulario */
@@ -57,7 +57,6 @@
   outline: none;
 }
 
-/* Efecto al hacer focus en los campos */
 .contact-form input[type="text"]:focus,
 .contact-form input[type="email"]:focus,
 .contact-form textarea:focus {
@@ -65,13 +64,13 @@
   box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
 }
 
-/* Estilo del área de texto */
+/* Área de texto */
 .contact-form textarea {
   height: 150px;
   resize: none;
 }
 
-/* Estilos del botón de enviar */
+/* Botón de envío */
 .contact-form button {
   padding: 0.8rem 1.5rem;
   font-size: 1rem;
@@ -81,29 +80,26 @@
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
-  animation: contactButtonFadeIn 1s ease-out;
+  animation: fadeIn 1s ease-out;
 }
 
-/* Efecto hover del botón */
 .contact-form button:hover {
   background-color: #0056b3;
   transform: translateY(-2px);
 }
 
-/* Estilos del contenedor de la calificación */
+/* Contenedor de calificación */
 .star-rating-container {
   margin-top: 1.5rem;
   text-align: center;
 }
 
-/* Título de la calificación */
 .rating-title {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
   color: #555;
 }
 
-/* Contenedor de las estrellas */
 .star-rating {
   display: flex;
   align-items: center;
@@ -111,48 +107,27 @@
   gap: 0.5rem;
 }
 
-/* Estilo base de las estrellas */
 .star {
   font-size: 2rem;
   color: #ccc;
   cursor: pointer;
   transition: color 0.3s ease, transform 0.3s ease;
   opacity: 0;
-  animation: contactStarFadeIn 1s ease-out forwards;
+  animation: fadeIn 1s ease-out forwards;
 }
 
-/* Animación de entrada para las estrellas */
-@keyframes contactStarFadeIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Estrellas seleccionadas y en hover */
 .star.selected,
-.star.hover {
+.star:hover {
   color: #ffcc00;
   transform: scale(1.2);
 }
 
-/* Animación de escala de las estrellas al hacer hover */
-.star:hover {
-  color: #ffcc00;
-  transform: scale(1.4);
-}
-
-/* Efecto de animación de la estrella al dejar el hover */
 .star-rating .star:hover ~ .star {
   color: #ccc;
 }
 
-/* Animación del botón de envío */
-@keyframes contactButtonFadeIn {
+/* Animación general */
+@keyframes fadeIn {
   0% {
     opacity: 0;
     transform: translateY(20px);
@@ -163,27 +138,47 @@
   }
 }
 
-/* Animación de fade-in general para el formulario de contacto */
-@keyframes contactFadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
+/* Diseño Responsivo */
+@media (max-width: 768px) {
+  .contact-form {
+    padding: 3rem 1.5rem;
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+
+  .contact-form h2 {
+    font-size: 2rem;
+  }
+
+  .contact-form > form {
+    max-width: 90%;
+  }
+
+  .contact-form button {
+    font-size: 0.9rem;
+  }
+
+  .star {
+    font-size: 1.8rem;
   }
 }
 
-/* Animación de fade-in específica para el formulario */
-@keyframes contactFormFadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
+@media (max-width: 480px) {
+  .contact-form {
+    padding: 2rem 1rem;
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+
+  .contact-form h2 {
+    font-size: 1.8rem;
+  }
+
+  .contact-form > form {
+    gap: 1rem;
+  }
+
+  .contact-form button {
+    font-size: 0.8rem;
+  }
+
+  .star {
+    font-size: 1.6rem;
   }
 }
-

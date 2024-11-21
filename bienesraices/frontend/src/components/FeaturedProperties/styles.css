@@ -4,8 +4,20 @@
   padding: 5rem 2rem;
   margin: 0 auto;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh; /* Usar min-height para evitar problemas en pantallas pequeñas */
   background-color: #bbdefb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#featured-properties {
+  font-size: 2.5rem; /* Ajuste para pantallas grandes */
+  margin-bottom: 2rem;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .propiedades-grid {
@@ -13,15 +25,18 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px; /* Limitar el ancho máximo para pantallas grandes */
   padding: 20px;
+  margin: 0 auto;
 }
 
 .property-card {
-  flex: 1 1 calc(33.33% - 40px);
+  flex: 1 1 calc(33.33% - 40px); /* Tres columnas en pantallas grandes */
   max-width: 400px;
   box-sizing: border-box;
   margin: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .property-card:hover {
@@ -32,7 +47,7 @@
 /* Contenedor de la imagen de la propiedad destacada */
 .featured-property-image-container {
   width: 100%;
-  height: 200px; /* Altura fija */
+  height: 200px;
   overflow: hidden;
   position: relative;
   transition: height 0.3s ease;
@@ -41,12 +56,12 @@
 .featured-property-card-image {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ajusta la imagen sin deformarla */
+  object-fit: cover; /* Asegura que la imagen no se deforme */
   cursor: pointer;
   display: block;
 }
 
-/* Contenido de la tarjeta de propiedad destacada */
+/* Contenido de la tarjeta */
 .featured-property-card-content {
   padding: 1rem;
   flex: 1;
@@ -56,7 +71,7 @@
 }
 
 .featured-property-card-title {
-  font-size: 1.2rem;
+  font-size: 1.5rem; /* Ajuste para pantallas grandes */
   font-weight: bold;
   margin-bottom: 0.5rem;
   color: #333;
@@ -65,14 +80,14 @@
 }
 
 .featured-property-card-price {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #007bff;
   margin-bottom: 0.5rem;
   font-weight: bold;
 }
 
 .featured-property-card-location {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #555;
   margin-bottom: 0.5rem;
   display: flex;
@@ -85,7 +100,7 @@
 }
 
 .featured-property-card-description {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #777;
   height: 60px; /* Mantén una altura fija para la descripción */
   overflow: hidden;
@@ -93,39 +108,66 @@
   white-space: nowrap;
   margin-bottom: 0.8rem;
 }
-#featured-properties  {
-  font-size: 2.2rem;
-  margin-bottom: 2rem;
-  color: #333;
-}
 
+/* Estilo del texto global */
 p {
   color: #666;
   font-size: 1.5rem;
   line-height: 1.6;
 }
 
-/* Estilo Responsivo para propiedades destacadas */
+/* Estilo Responsivo */
+@media (max-width: 1024px) {
+  .property-card {
+    flex: 1 1 calc(50% - 20px); /* Dos columnas en tablets */
+  }
+
+  .featured-property-card-title {
+    font-size: 1.3rem;
+  }
+
+  .featured-property-card-price {
+    font-size: 1rem;
+  }
+
+  .featured-property-card-location,
+  .featured-property-card-description {
+    font-size: 0.9rem;
+  }
+}
+
 @media (max-width: 768px) {
-  .featured-properties-grid {
-    grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+  .property-card {
+    flex: 1 1 100%; /* Una columna en pantallas pequeñas */
   }
 
   .featured-property-image-container {
     height: 180px;
   }
 
-  .featured-property-card-content {
-    padding: 1rem;
-  }
-
   .featured-property-card-title {
-    font-size: 1rem; 
+    font-size: 1.2rem;
   }
 
   .featured-property-card-price,
   .featured-property-card-location,
   .featured-property-card-description {
     font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .featured-property-card-title {
+    font-size: 1rem;
+  }
+
+  .featured-property-card-price,
+  .featured-property-card-location {
+    font-size: 0.7rem;
+  }
+
+  .featured-property-card-description {
+    font-size: 0.7rem;
+    line-height: 1.4;
   }
 }

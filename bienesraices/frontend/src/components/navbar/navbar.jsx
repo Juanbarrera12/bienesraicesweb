@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect, useCallback, memo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./styles.css";
 
@@ -13,15 +13,17 @@ const Navbar = () => {
     setIsAuthenticated(!!token); // Si hay token, está autenticado
   }, []);
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  // Alternar menú
+  const toggleMenu = useCallback(() => {
+    setMenuOpen((prevState) => !prevState);
+  }, []);
 
-  const handleLogout = () => {
+  // Manejar logout
+  const handleLogout = useCallback(() => {
     localStorage.removeItem("token"); // Elimina el token de autenticación
     setIsAuthenticated(false); // Actualiza el estado
     navigate("/"); // Redirige al inicio
-  };
+  }, [navigate]);
 
   return (
     <nav className="navbar" aria-label="Primary navigation">
@@ -79,6 +81,7 @@ const Navbar = () => {
                   onClick={handleLogout}
                   className="logout-btn"
                   aria-label="Cerrar sesión"
+                  aria-live="polite"
                 >
                   Cerrar Sesión
                 </button>
@@ -100,4 +103,5 @@ const Navbar = () => {
 };
 
 export default memo(Navbar);
+
 

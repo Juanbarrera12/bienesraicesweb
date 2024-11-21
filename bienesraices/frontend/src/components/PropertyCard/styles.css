@@ -1,4 +1,4 @@
-/* Reset general para evitar desbordamientos */
+/* Reset general */
 body {
   margin: 0;
   padding: 0;
@@ -15,8 +15,7 @@ body {
   box-sizing: border-box;
   max-width: 1200px; /* Ancho máximo del contenedor */
   margin: 0 auto; /* Centrar el grid horizontalmente */
-  grid-auto-flow: row; /* Asegura que los elementos fluyan hacia abajo */
-  width: calc(100% - 40px); /* Asegura que haya espacio igual a la izquierda y derecha */
+  width: calc(100% - 40px); /* Ajusta el contenedor */
 }
 
 /* Tarjeta de propiedad */
@@ -28,7 +27,6 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  z-index: 1;
   height: 500px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -42,16 +40,15 @@ body {
 /* Contenedor de la imagen */
 .property-image-container {
   width: 100%;
-  height: 200px; /* Altura fija */
+  height: 200px;
   overflow: hidden;
   position: relative;
-  transition: height 0.3s ease;
 }
 
 .property-card-image {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ajusta la imagen sin deformarla */
+  object-fit: cover;
   cursor: pointer;
   display: block;
 }
@@ -74,7 +71,7 @@ body {
   letter-spacing: 1px;
 }
 
-/* Ajustes de estilos */
+/* Detalles adicionales */
 .property-card-price {
   font-size: 1rem;
   color: #007bff;
@@ -104,19 +101,23 @@ body {
 @media (max-width: 1024px) {
   .property-grid {
     grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas medianas */
-    width: calc(100% - 40px); /* Mantén el mismo espaciado */
+    width: calc(100% - 40px);
   }
 }
 
 @media (max-width: 768px) {
   .property-grid {
     grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
-    padding: 10px; /* Reduce el padding para dispositivos pequeños */
-    width: calc(100% - 20px); /* Ajusta el ancho en dispositivos pequeños */
+    padding: 10px;
+    width: calc(100% - 20px);
   }
 
   .property-image-container {
-    height: 180px; /* Ajusta altura de imágenes en dispositivos pequeños */
+    height: 180px; /* Imágenes más pequeñas */
+  }
+
+  .property-card {
+    height: auto; /* Ajuste automático en pantallas pequeñas */
   }
 
   .property-card-title {
@@ -127,5 +128,26 @@ body {
   .property-card-location,
   .property-card-description {
     font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .property-grid {
+    padding: 5px; /* Reduce el padding en móviles */
+    gap: 10px; /* Reduce el espacio entre tarjetas */
+  }
+
+  .property-card-content {
+    padding: 0.8rem; /* Menor padding en tarjetas */
+  }
+
+  .property-card-title {
+    font-size: 0.9rem;
+  }
+
+  .property-card-price,
+  .property-card-location,
+  .property-card-description {
+    font-size: 0.75rem;
   }
 }

@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
 }
 
 /* Contenedor principal de la barra de filtros */
@@ -22,7 +23,7 @@
   transition: max-height 0.5s ease, opacity 0.5s ease;
 }
 
-/* Efecto hover en el contenedor */
+/* Efecto hover */
 .property-filter:hover {
   transform: scale(1.02);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
@@ -41,16 +42,6 @@
   background-color: #f8f8f8;
 }
 
-.property-filter.filter-open {
-  max-height: 600px;
-  opacity: 1;
-}
-
-.property-filter.filter-closed {
-  max-height: 0;
-  opacity: 0;
-}
-
 /* Foco en inputs/selects */
 .property-filter input:focus,
 .property-filter select:focus {
@@ -59,7 +50,7 @@
   box-shadow: 0 0 8px rgba(0, 188, 212, 0.3);
 }
 
-/* Botón para alternar la visibilidad de la barra de filtros */
+/* Botón alternar visibilidad */
 .toggle-filter-btn {
   display: flex;
   align-items: center;
@@ -72,8 +63,7 @@
   border-radius: 10px;
   font-size: 1rem;
   cursor: pointer;
-  margin-top: 20px;
-  margin-bottom: 1rem;
+  margin: 20px 0 1rem;
   transition: all 0.3s ease;
 }
 
@@ -81,7 +71,6 @@
   background: linear-gradient(135deg, #0056b3, #003f88);
   box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
 }
-
 
 /* Botón "Eliminar filtros" */
 .clear-all-btn {
@@ -114,6 +103,17 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Estados de visibilidad */
+.property-filter.filter-open {
+  max-height: 600px;
+  opacity: 1;
+}
+
+.property-filter.filter-closed {
+  max-height: 0;
+  opacity: 0;
 }
 
 /* Diseño responsivo */

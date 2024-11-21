@@ -3,13 +3,27 @@ import { FaMapMarkerAlt } from 'react-icons/fa'; // Importar el ícono de ubicac
 import ImageCarousel from '../ImageCarousel/ImageCarousel';
 import './styles.css';
 
+const DEFAULT_IMAGE = 'ruta_a_imagen_predeterminada'; // Imagen predeterminada
+
 function PropertyCard({ property }) {
-  const { title, price, location, description, images, rooms, bathrooms, amenities, services } = property;
+  const { 
+    title, 
+    price, 
+    location, 
+    description, 
+    images = [], 
+    rooms, 
+    bathrooms, 
+    amenities = [], 
+    services = [] 
+  } = property;
+
   const [isCarouselOpen, setIsCarouselOpen] = useState(false);
 
-  const imageUrls = images && images.length > 0 
+  // Generar URLs de las imágenes
+  const imageUrls = images.length > 0 
     ? images.map(image => `http://localhost:5000${image.url}`)
-    : [];
+    : [DEFAULT_IMAGE];
 
   const openCarousel = (e) => {
     e.stopPropagation(); // Prevenir propagación del evento
@@ -20,13 +34,14 @@ function PropertyCard({ property }) {
 
   return (
     <>
-      <div className="property-card">
+      <article className="property-card" aria-label={`Propiedad: ${title}`}>
         <div className="property-image-container">
           <img 
-            src={imageUrls[0] || 'ruta_a_imagen_predeterminada'}
-            alt={title}
+            src={imageUrls[0]}
+            alt={`Imagen de la propiedad ${title}`}
             className="property-card-image"
             onClick={openCarousel}
+            loading="lazy"
           />
         </div>
 
@@ -36,15 +51,16 @@ function PropertyCard({ property }) {
           
           {/* Ubicación con ícono y color */}
           <p className="property-card-location">
-            <FaMapMarkerAlt color="#007bff" /> {/* Ícono de ubicación con color personalizado */}
+            <FaMapMarkerAlt color="#007bff" aria-hidden="true" /> {/* Ícono de ubicación con color personalizado */}
             <span className="location-text">{location}</span>
           </p>
 
           <p className="property-card-description">{description}</p>
-          <p className='property-card-description'>*Clic en la imagen para visualizar información</p>
+          <p className='property-card-description'>*Clic en la imagen para visualizar más información</p>
         </div>
-      </div>
+      </article>
 
+      {/* Carrusel de imágenes */}
       {isCarouselOpen && (
         <div className="carousel-container">
           <ImageCarousel
@@ -66,6 +82,7 @@ function PropertyCard({ property }) {
 }
 
 export default PropertyCard;
+
 
 
 

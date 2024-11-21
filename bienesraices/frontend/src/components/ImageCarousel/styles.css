@@ -5,13 +5,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.85); /* Fondo oscuro translúcido */
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  pointer-events: auto;
-  will-change: transform;
 }
 
 .carousel-content {
@@ -22,8 +20,7 @@
   background: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-  pointer-events: auto;
-  overflow: hidden;
+  overflow: hidden; /* Evita desbordamientos */
 }
 
 .carousel-images {
@@ -32,15 +29,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden; /* Elimina espacios blancos */
 }
 
 .carousel-image {
   width: 100%;
-  max-height: 80vh;
-  object-fit: cover;
-  border-radius: 10px 0 0 10px;
-  transition: transform 0.3s ease;
-  will-change: transform;
+  height: auto;
+  max-height: 500px; /* Máxima altura */
+  object-fit: cover; /* Asegura que la imagen no se deforme */
 }
 
 .carousel-info {
@@ -73,7 +69,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  text-align: center;
   width: 50%;
   margin: 50px auto;
   text-decoration: none;
@@ -87,23 +83,23 @@
   position: absolute;
   top: 15px;
   right: 15px;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.8); /* Fondo blanco translúcido */
   border: none;
   font-size: 2rem;
   cursor: pointer;
-  color: #fff;
+  color: #333;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1100;
-  transition: background 0.3s ease;
 }
 
 .carousel-close:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: #fff;
+  color: #007bff;
 }
 
 .carousel-prev,
@@ -116,14 +112,11 @@
   font-size: 2.5rem;
   cursor: pointer;
   color: #333;
-  border-radius: 50%;
   width: 50px;
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1;
-  padding: 0;
 }
 
 .carousel-prev {
@@ -134,18 +127,11 @@
   right: 10px;
 }
 
-.carousel-prev:hover,
-.carousel-next:hover {
-  background: #fff;
-  opacity: 0.5;
-}
-
-/* Ajustes responsivos */
-@media (max-width: 768px) {
+/* Responsividad */
+@media (max-width: 1024px) { /* Tablets */
   .carousel-content {
     flex-direction: column;
     width: 95%;
-    max-width: 95%;
   }
 
   .carousel-images {
@@ -153,14 +139,13 @@
   }
 
   .carousel-image {
-    max-height: 50vh;
-    border-radius: 10px 10px 0 0;
+    max-height: 400px; /* Altura máxima menor */
   }
 
   .carousel-info {
     width: 100%;
-    padding: 1rem;
     text-align: center;
+    padding: 1rem;
   }
 
   .carousel-info h2 {
@@ -172,28 +157,15 @@
   }
 
   .contact-button {
-    width: 80%;
-    font-size: 0.9rem;
-    padding: 0.6rem;
-  }
-
-  .carousel-prev,
-  .carousel-next {
-    font-size: 2rem;
-    width: 40px;
-    height: 40px;
-  }
-
-  .carousel-close {
-    top: 10px;
-    right: 10px;
-    font-size: 1.8rem;
-    width: 40px;
-    height: 40px;
+    width: 70%;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) { /* Teléfonos grandes */
+  .carousel-info {
+    padding: 0.8rem;
+  }
+
   .carousel-info h2 {
     font-size: 1.3rem;
   }
@@ -203,16 +175,53 @@
   }
 
   .contact-button {
-    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  .carousel-prev,
+  .carousel-next {
+    width: 40px;
+    height: 40px;
+    font-size: 1.8rem;
+  }
+
+  .carousel-close {
+    width: 35px;
+    height: 35px;
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) { /* Teléfonos pequeños */
+  .carousel-image {
+    max-height: 300px; /* Ajusta aún más la altura */
+  }
+
+  .carousel-info h2 {
+    font-size: 1.2rem;
+  }
+
+  .carousel-info p {
+    font-size: 0.7rem;
+  }
+
+  .contact-button {
+    width: 90%;
     font-size: 0.8rem;
     padding: 0.5rem;
   }
 
-  .carousel-close {
-    font-size: 1.6rem;
+  .carousel-prev,
+  .carousel-next {
     width: 35px;
     height: 35px;
+    font-size: 1.5rem;
+  }
+
+  .carousel-close {
+    width: 30px;
+    height: 30px;
+    font-size: 1.4rem;
   }
 }
-
-

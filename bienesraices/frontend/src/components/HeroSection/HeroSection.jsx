@@ -1,21 +1,20 @@
-// src/components/HeroSection/HeroSection.jsx
 import React, { memo } from 'react';
 import './styles.css';
 
 const HeroSection = ({ title, subtitle }) => {
   return (
-    <section className="hero" aria-labelledby="hero-title" role="banner">
-      <div className="hero-overlay">
-        <div className="hero-text">
-          <h1 id="hero-title">{title}</h1>
-          <p className = 'hero-subtitle'>{subtitle}</p>
-        </div>
+    <header className="hero" aria-labelledby="hero-title" role="banner">
+      <div className="hero-overlay" aria-hidden="true"></div>
+      <div className="hero-content">
+        <h1 id="hero-title" lang="es">{title}</h1>
+        <p className="hero-subtitle" lang="es">{subtitle}</p>
       </div>
-    </section>
+    </header>
   );
 };
 
 export default memo(HeroSection);
+
 
 
 
