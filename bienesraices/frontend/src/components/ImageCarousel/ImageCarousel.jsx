@@ -85,7 +85,7 @@ const ImageCarousel = ({
           {services.length > 0 && (
             <p><strong>Servicios:</strong> {services.join(', ')}</p>
           )}
-          <a href="http://localhost:3000/contact" className="contact-button">
+          <a href="https://bienesraicesweb.onrender.com/contact" className="contact-button">
             Contactar
           </a>
         </div>

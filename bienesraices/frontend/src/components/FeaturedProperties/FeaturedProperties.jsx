@@ -9,7 +9,7 @@ const FeaturedProperties = () => {
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/properties/featured');
+        const response = await fetch('https://bienesraicesweb.onrender.com/api/properties/featured');
         if (response.ok) {
           const data = await response.json();
           setProperties(data);
