@@ -1,0 +1,44 @@
+.propiedades-page {
+  padding-top: 100px;
+  text-align: center;
+}
+
+.properties-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Tres columnas iguales */
+  gap: 20px; /* Espaciado entre tarjetas */
+  padding: 20px;
+  box-sizing: border-box;
+  max-width: 1200px; /* Ancho máximo del contenedor */
+  margin: 0 auto; /* Centrar el grid */
+}
+
+/* Diseño responsivo */
+@media (max-width: 1024px) {
+  .properties-grid {
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas para pantallas medianas */
+  }
+}
+
+@media (max-width: 768px) {
+  .properties-grid {
+    grid-template-columns: 1fr; /* Una columna para pantallas pequeñas */
+    padding: 10px; /* Reducir el padding en pantallas pequeñas */
+  }
+
+  .propiedades-page {
+    padding-top: 80px; /* Ajustar el espacio superior */
+  }
+}
+
+@media (max-width: 480px) {
+  .properties-grid {
+    gap: 15px; /* Reducir el espaciado entre tarjetas en pantallas muy pequeñas */
+    padding: 5px; /* Reducir aún más el padding */
+  }
+
+  .propiedades-page {
+    padding-top: 60px; /* Reducir espacio superior en móviles */
+  }
+}
+

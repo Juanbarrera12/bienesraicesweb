@@ -1,0 +1,67 @@
+.hero {
+  height: 100vh; /* Toma toda la altura de la ventana */
+  min-height: 600px; /* Altura mínima */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: #fff; /* Color del texto */
+  overflow: hidden; /* Asegura que nada sobresalga del contenedor */
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Cubre todo el ancho del contenedor */
+  height: 100%; /* Cubre toda la altura del contenedor */
+  background-image: url('../../images/casa.avif'); /* Imagen de fondo */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: brightness(50%); /* Oscurece la imagen */
+  z-index: 1; /* Asegura que el overlay esté detrás del contenido */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2; /* Coloca el texto por encima del overlay */
+  text-align: center;
+  max-width: 800px; /* Ancho máximo para el contenido */
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #fff; /* Título en blanco */
+}
+
+.hero-content p {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: #aaa; /* Subtítulo en blanco */
+}
+
+/* Responsivo para pantallas medianas */
+@media screen and (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1.2rem;
+  }
+}
+
+/* Responsivo para pantallas pequeñas */
+@media screen and (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+}

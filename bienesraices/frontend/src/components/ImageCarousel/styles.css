@@ -1,0 +1,227 @@
+/* Estilos generales del carrusel */
+.carousel-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85); /* Fondo oscuro translúcido */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.carousel-content {
+  position: relative;
+  display: flex;
+  width: 90%;
+  max-width: 1200px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  overflow: hidden; /* Evita desbordamientos */
+}
+
+.carousel-images {
+  position: relative;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Elimina espacios blancos */
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+  max-height: 500px; /* Máxima altura */
+  object-fit: cover; /* Asegura que la imagen no se deforme */
+}
+
+.carousel-info {
+  width: 40%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.carousel-info h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #000000;
+}
+
+.carousel-info p {
+  font-size: 1rem;
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.contact-button {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  width: 50%;
+  margin: 50px auto;
+  text-decoration: none;
+}
+
+.contact-button:hover {
+  background-color: #0056b3;
+}
+
+.carousel-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.8); /* Fondo blanco translúcido */
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #333;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+}
+
+.carousel-close:hover {
+  background: #fff;
+  color: #007bff;
+}
+
+.carousel-prev,
+.carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 2.5rem;
+  cursor: pointer;
+  color: #333;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-prev {
+  left: 10px;
+}
+
+.carousel-next {
+  right: 10px;
+}
+
+/* Responsividad */
+@media (max-width: 1024px) { /* Tablets */
+  .carousel-content {
+    flex-direction: column;
+    width: 95%;
+  }
+
+  .carousel-images {
+    width: 100%;
+  }
+
+  .carousel-image {
+    max-height: 400px; /* Altura máxima menor */
+  }
+
+  .carousel-info {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .carousel-info h2 {
+    font-size: 1.5rem;
+  }
+
+  .carousel-info p {
+    font-size: 0.9rem;
+  }
+
+  .contact-button {
+    width: 70%;
+  }
+}
+
+@media (max-width: 768px) { /* Teléfonos grandes */
+  .carousel-info {
+    padding: 0.8rem;
+  }
+
+  .carousel-info h2 {
+    font-size: 1.3rem;
+  }
+
+  .carousel-info p {
+    font-size: 0.8rem;
+  }
+
+  .contact-button {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  .carousel-prev,
+  .carousel-next {
+    width: 40px;
+    height: 40px;
+    font-size: 1.8rem;
+  }
+
+  .carousel-close {
+    width: 35px;
+    height: 35px;
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) { /* Teléfonos pequeños */
+  .carousel-image {
+    max-height: 300px; /* Ajusta aún más la altura */
+  }
+
+  .carousel-info h2 {
+    font-size: 1.2rem;
+  }
+
+  .carousel-info p {
+    font-size: 0.7rem;
+  }
+
+  .contact-button {
+    width: 90%;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
+
+  .carousel-prev,
+  .carousel-next {
+    width: 35px;
+    height: 35px;
+    font-size: 1.5rem;
+  }
+
+  .carousel-close {
+    width: 30px;
+    height: 30px;
+    font-size: 1.4rem;
+  }
+}

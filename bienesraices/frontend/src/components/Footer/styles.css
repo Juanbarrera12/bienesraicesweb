@@ -1,0 +1,122 @@
+.footer {
+  background-color: #222;
+  color: #fff;
+  padding: 3rem 1rem; /* Ajuste de paddings para adaptarse mejor */
+  text-align: center;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-column {
+  flex: 1;
+  max-width: 280px; /* Ajuste del tamaño máximo */
+  text-align: left;
+}
+
+.footer-column h4 {
+  margin-bottom: 15px;
+  font-size: 1.3rem; /* Tamaño ligeramente mayor */
+  border-bottom: 2px solid #007bff;
+  display: inline-block;
+  padding-bottom: 5px;
+  color: #fff;
+}
+
+.footer-column p {
+  margin: 5px 0;
+  font-size: 1rem; /* Tamaño de texto más legible */
+  color: #ddd; /* Mejor contraste con el fondo oscuro */
+}
+
+.footer-column iframe {
+  border-radius: 10px;
+  width: 100%;
+  height: 200px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  color: #fff;
+  font-size: 1.5rem;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #007bff;
+}
+
+.footer-rights {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  color: #aaa; /* Texto más tenue */
+}
+
+/* Responsividad */
+@media (max-width: 1024px) {
+  .footer-container {
+    flex-wrap: wrap;
+    justify-content: center; /* Centrar los elementos */
+  }
+
+  .footer-column {
+    max-width: 45%; /* Ajuste para tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-column {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .footer-column h4 {
+    font-size: 1.2rem; /* Tamaño ajustado para pantallas pequeñas */
+  }
+
+  .footer-column p {
+    font-size: 0.9rem; /* Reducir ligeramente el tamaño del texto */
+  }
+
+  .footer-rights {
+    margin-top: 20px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-column h4 {
+    font-size: 1rem;
+  }
+
+  .footer-column p {
+    font-size: 0.8rem;
+  }
+
+  .social-icons a {
+    font-size: 1.2rem; /* Íconos más pequeños en pantallas pequeñas */
+  }
+
+  .footer-rights {
+    font-size: 0.7rem;
+  }
+}

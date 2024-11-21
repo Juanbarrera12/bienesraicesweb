@@ -1,0 +1,184 @@
+/* Estilos generales del formulario de contacto */
+.navbar.no-animation {
+  animation: none;
+  position: sticky; /* Navbar fijo */
+  top: 0;
+  z-index: 100; /* Siempre visible encima del contenido */
+}
+
+.contact-form {
+  position: relative;
+  padding: 4rem 2rem;
+  max-width: 800px;
+  margin: 150px auto;
+  text-align: center;
+  background: linear-gradient(135deg, #ffffff, #f4f4f9);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 1s ease-out;
+  overflow: hidden; /* Previene desbordes de elementos animados */
+}
+
+/* Título del formulario */
+.contact-form h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards 0.5s;
+}
+
+/* Estilo del formulario */
+.contact-form > form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 500px;
+  animation: fadeIn 1s ease-out;
+}
+
+/* Estilos de los campos del formulario */
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+/* Área de texto */
+.contact-form textarea {
+  height: 150px;
+  resize: none;
+}
+
+/* Botón de envío */
+.contact-form button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  animation: fadeIn 1s ease-out;
+}
+
+.contact-form button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Contenedor de calificación */
+.star-rating-container {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.rating-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.star-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.star {
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.star.selected,
+.star:hover {
+  color: #ffcc00;
+  transform: scale(1.2);
+}
+
+.star-rating .star:hover ~ .star {
+  color: #ccc;
+}
+
+/* Animación general */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Diseño Responsivo */
+@media (max-width: 768px) {
+  .contact-form {
+    padding: 3rem 1.5rem;
+  }
+
+  .contact-form h2 {
+    font-size: 2rem;
+  }
+
+  .contact-form > form {
+    max-width: 90%;
+  }
+
+  .contact-form button {
+    font-size: 0.9rem;
+  }
+
+  .star {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-form {
+    padding: 2rem 1rem;
+  }
+
+  .contact-form h2 {
+    font-size: 1.8rem;
+  }
+
+  .contact-form > form {
+    gap: 1rem;
+  }
+
+  .contact-form button {
+    font-size: 0.8rem;
+  }
+
+  .star {
+    font-size: 1.6rem;
+  }
+}

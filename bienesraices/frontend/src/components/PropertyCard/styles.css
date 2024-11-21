@@ -1,0 +1,153 @@
+/* Reset general */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Previene desbordamiento horizontal */
+}
+
+/* Contenedor principal de las propiedades */
+.property-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Tres columnas iguales */
+  gap: 20px; /* Espaciado entre tarjetas */
+  padding: 20px;
+  box-sizing: border-box;
+  max-width: 1200px; /* Ancho máximo del contenedor */
+  margin: 0 auto; /* Centrar el grid horizontalmente */
+  width: calc(100% - 40px); /* Ajusta el contenedor */
+}
+
+/* Tarjeta de propiedad */
+.property-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 500px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover */
+.property-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Contenedor de la imagen */
+.property-image-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.property-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  display: block;
+}
+
+/* Contenido de la tarjeta */
+.property-card-content {
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.property-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Detalles adicionales */
+.property-card-price {
+  font-size: 1rem;
+  color: #007bff;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.property-card-location {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.property-card-description {
+  font-size: 0.9rem;
+  color: #777;
+  height: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 0.8rem;
+}
+
+/* Estilo Responsivo */
+@media (max-width: 1024px) {
+  .property-grid {
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas medianas */
+    width: calc(100% - 40px);
+  }
+}
+
+@media (max-width: 768px) {
+  .property-grid {
+    grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    padding: 10px;
+    width: calc(100% - 20px);
+  }
+
+  .property-image-container {
+    height: 180px; /* Imágenes más pequeñas */
+  }
+
+  .property-card {
+    height: auto; /* Ajuste automático en pantallas pequeñas */
+  }
+
+  .property-card-title {
+    font-size: 1rem;
+  }
+
+  .property-card-price,
+  .property-card-location,
+  .property-card-description {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .property-grid {
+    padding: 5px; /* Reduce el padding en móviles */
+    gap: 10px; /* Reduce el espacio entre tarjetas */
+  }
+
+  .property-card-content {
+    padding: 0.8rem; /* Menor padding en tarjetas */
+  }
+
+  .property-card-title {
+    font-size: 0.9rem;
+  }
+
+  .property-card-price,
+  .property-card-location,
+  .property-card-description {
+    font-size: 0.75rem;
+  }
+}
