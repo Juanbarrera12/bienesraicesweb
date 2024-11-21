@@ -22,7 +22,7 @@ function PropertyCard({ property }) {
 
   // Generar URLs de las imágenes
   const imageUrls = images.length > 0 
-    ? images.map(image => `http://localhost:5000${image.url}`)
+    ? images.map(image => `https://bienesraicesweb.onrender.com${image.url}`)
     : [DEFAULT_IMAGE];
 
   const openCarousel = (e) => {

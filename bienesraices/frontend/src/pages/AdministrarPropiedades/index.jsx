@@ -36,7 +36,7 @@ const AdministrarPropiedades = () => {
           return;
         }
 
-        const res = await axios.get('http://localhost:5000/api/auth/verify', {
+        const res = await axios.get('https://bienesraicesweb.onrender.com/api/auth/verify', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -62,7 +62,7 @@ const AdministrarPropiedades = () => {
 
   const fetchProperties = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/properties', {
+      const response = await axios.get('https://bienesraicesweb.onrender.com/api/properties', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setProperties(response.data);
@@ -93,7 +93,7 @@ const AdministrarPropiedades = () => {
     Array.from(images).forEach((image) => formData.append('images', image));
 
     try {
-      await axios.post('http://localhost:5000/api/properties', formData, {
+      await axios.post('https://bienesraicesweb.onrender.com/api/properties', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -125,7 +125,7 @@ const AdministrarPropiedades = () => {
 
   const handleDeleteProperty = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/properties/${id}`, {
+      await axios.delete(`https://bienesraicesweb.onrender.com/api/properties/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       fetchProperties();
@@ -144,7 +144,7 @@ const AdministrarPropiedades = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:5000/api/properties/${editingProperty.id}`,
+        `https://bienesraicesweb.onrender.com/api/properties/${editingProperty.id}`,
         newProperty,
         {
           headers: {

@@ -28,7 +28,7 @@ function PropertyFilter({ onFilter }) {
     const fetchFilterOptions = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get('http://localhost:5000/api/properties/filter-options');
+        const response = await axios.get('https://bienesraicesweb.onrender.com/api/properties/filter-options');
         setFilters(response.data);
       } catch (error) {
         console.error('Error al cargar opciones de filtro:', error);
