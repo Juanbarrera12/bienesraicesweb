@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
-import { FaTimes } from 'react-icons/fa';
-import "./styles.css" // Asegúrate de tener la importación del ícono
+import { FaTimes, FaFilter } from 'react-icons/fa';
+import './styles.css';
 
 function PropertyFilter({ onFilter }) {
   const [filters, setFilters] = useState({
@@ -21,6 +21,8 @@ function PropertyFilter({ onFilter }) {
     bathrooms: '',
   });
 
+  const [isFilterVisible, setIsFilterVisible] = useState(false); // Controla la visibilidad de la barra de filtros
+
   useEffect(() => {
     // Obtener las opciones de filtro desde el backend
     const fetchFilterOptions = async () => {
@@ -28,7 +30,7 @@ function PropertyFilter({ onFilter }) {
         const response = await axios.get('http://localhost:5000/api/properties/filter-options');
         setFilters(response.data);
       } catch (error) {
-        console.error("Error al cargar opciones de filtro:", error);
+        console.error('Error al cargar opciones de filtro:', error);
       }
     };
     fetchFilterOptions();
@@ -37,7 +39,7 @@ function PropertyFilter({ onFilter }) {
   const handleSelectChange = (selectedOption, { name }) => {
     let value;
     if (Array.isArray(selectedOption)) {
-      value = selectedOption.map(opt => opt.value);
+      value = selectedOption.map((opt) => opt.value);
     } else {
       value = selectedOption ? selectedOption.value : '';
     }
@@ -67,58 +69,93 @@ function PropertyFilter({ onFilter }) {
     onFilter(emptyFilters);
   };
 
+  const toggleFilterVisibility = () => {
+    setIsFilterVisible((prev) => !prev);
+  };
+
   return (
-    <div className="property-filter">
-      <Select
-        name="location"
-        options={(filters.locations || []).map(location => ({ value: location, label: location }))}
-        placeholder="Selecciona una ubicación"
-        onChange={handleSelectChange}
-        value={selectedFilters.location ? { value: selectedFilters.location, label: selectedFilters.location } : null}
-      />
-
-      <Select
-        name="type"
-        options={(filters.types || []).map(type => ({ value: type, label: type }))}
-        placeholder="Selecciona un tipo de propiedad"
-        onChange={handleSelectChange}
-        value={selectedFilters.type ? { value: selectedFilters.type, label: selectedFilters.type } : null}
-      />
-
-      <Select
-        name="amenities"
-        options={(filters.amenities || []).map(amenity => ({ value: amenity, label: amenity }))}
-        isMulti
-        placeholder="Selecciona amenities"
-        onChange={(selectedOption) => handleSelectChange(selectedOption, { name: 'amenities' })}
-        value={selectedFilters.amenities.map(amenity => ({ value: amenity, label: amenity }))}
-      />
-
-
-      <input
-        type="number"
-        name="rooms"
-        placeholder="Número de habitaciones"
-        value={selectedFilters.rooms}
-        onChange={handleInputChange}
-        min="0"
-      />
-
-      <input
-        type="number"
-        name="bathrooms"
-        placeholder="Número de baños"
-        value={selectedFilters.bathrooms}
-        onChange={handleInputChange}
-        min="0"
-      />
-
-      {/* Botón único para eliminar todos los filtros */}
-      <button onClick={clearAllFilters} className="clear-all-btn">
-        Eliminar filtros <FaTimes />
+    <div className="filter-container">
+      {/* Botón para mostrar/ocultar filtros */}
+      <button className="toggle-filter-btn" onClick={toggleFilterVisibility}>
+        {isFilterVisible ? 'Ocultar filtros' : 'Mostrar filtros'} <FaFilter />
       </button>
+
+      {/* Renderizar filtros solo si están visibles */}
+      {isFilterVisible && (
+        <div className="property-filter filter-open">
+          <Select
+            name="location"
+            options={(filters.locations || []).map((location) => ({
+              value: location,
+              label: location,
+            }))}
+            placeholder="Selecciona una ubicación"
+            onChange={handleSelectChange}
+            value={
+              selectedFilters.location
+                ? { value: selectedFilters.location, label: selectedFilters.location }
+                : null
+            }
+          />
+
+          <Select
+            name="type"
+            options={(filters.types || []).map((type) => ({ value: type, label: type }))}
+            placeholder="Selecciona un tipo de propiedad"
+            onChange={handleSelectChange}
+            value={
+              selectedFilters.type
+                ? { value: selectedFilters.type, label: selectedFilters.type }
+                : null
+            }
+          />
+
+          <Select
+            name="amenities"
+            options={(filters.amenities || []).map((amenity) => ({
+              value: amenity,
+              label: amenity,
+            }))}
+            isMulti
+            placeholder="Selecciona amenities"
+            onChange={(selectedOption) =>
+              handleSelectChange(selectedOption, { name: 'amenities' })
+            }
+            value={selectedFilters.amenities.map((amenity) => ({
+              value: amenity,
+              label: amenity,
+            }))}
+          />
+
+          <input
+            type="number"
+            name="rooms"
+            placeholder="Número de habitaciones"
+            value={selectedFilters.rooms}
+            onChange={handleInputChange}
+            min="0"
+          />
+
+          <input
+            type="number"
+            name="bathrooms"
+            placeholder="Número de baños"
+            value={selectedFilters.bathrooms}
+            onChange={handleInputChange}
+            min="0"
+          />
+
+          {/* Botón único para eliminar todos los filtros */}
+          <button onClick={clearAllFilters} className="clear-all-btn">
+            Eliminar filtros <FaTimes />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
 
 export default PropertyFilter;
+
+
+

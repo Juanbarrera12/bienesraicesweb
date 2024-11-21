@@ -7,6 +7,7 @@ import SobreNosotros from './pages/SobreNosotros/index.jsx';
 import AdministrarPropiedades from './pages/AdministrarPropiedades/index.jsx';
 import ContactForm from './pages/contact/ContactForm.jsx';
 import AdminMsj from './pages/AdminMsj/AdminMessages.jsx';
+import Login from './components/Login/Login.jsx';
 
 import './App.css';
 
@@ -29,6 +30,7 @@ function App() {
                 <Route path="/admin/propiedades" element={<AdministrarPropiedades />} />
                 <Route path="/contact" element={<ContactForm />} />
                 <Route path="/mensajes" element={<AdminMsj />} />
+                <Route path="/Login" element={<Login />} />
             </Routes>
         </Router>
     );

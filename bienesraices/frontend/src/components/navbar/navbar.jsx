@@ -1,13 +1,26 @@
-// src/components/navbar/navbar.jsx
-import React, { useState, memo } from 'react';
-import { Link } from 'react-router-dom';
-import './styles.css';
+import React, { useState, useEffect, memo } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./styles.css";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
+
+  // Verificar autenticación al cargar
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsAuthenticated(!!token); // Si hay token, está autenticado
+  }, []);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Elimina el token de autenticación
+    setIsAuthenticated(false); // Actualiza el estado
+    navigate("/"); // Redirige al inicio
   };
 
   return (
@@ -26,28 +39,65 @@ const Navbar = () => {
         </button>
         <ul
           id="navigation-menu"
-          className={`nav-links ${menuOpen ? 'active' : ''}`}
+          className={`nav-links ${menuOpen ? "active" : ""}`}
           role="menu"
         >
           <li role="menuitem">
-            <Link to="/" onClick={toggleMenu}>Inicio</Link>
+            <Link to="/" onClick={toggleMenu}>
+              Inicio
+            </Link>
           </li>
           <li role="menuitem">
-            <Link to="/propiedades" onClick={toggleMenu}>Propiedades</Link>
+            <Link to="/propiedades" onClick={toggleMenu}>
+              Propiedades
+            </Link>
           </li>
           <li role="menuitem">
-            <Link to="/SobreNosotros" onClick={toggleMenu}>Nosotros</Link>
+            <Link to="/SobreNosotros" onClick={toggleMenu}>
+              Nosotros
+            </Link>
           </li>
           <li role="menuitem">
-            <Link to="/contact" onClick={toggleMenu}>Contacto</Link>
+            <Link to="/contact" onClick={toggleMenu}>
+              Contacto
+            </Link>
           </li>
+          {/* Mostrar solo si está autenticado */}
+          {isAuthenticated && (
+            <>
+              <li role="menuitem">
+                <Link
+                  to="/admin/propiedades"
+                  onClick={toggleMenu}
+                  className="admin-panel-link"
+                >
+                  Panel de Administración
+                </Link>
+              </li>
+              <li role="menuitem">
+                <button
+                  onClick={handleLogout}
+                  className="logout-btn"
+                  aria-label="Cerrar sesión"
+                >
+                  Cerrar Sesión
+                </button>
+              </li>
+            </>
+          )}
+          {/* Mostrar solo si no está autenticado */}
+          {!isAuthenticated && (
+            <li role="menuitem">
+              <Link to="/Login" onClick={toggleMenu} className="add-listing">
+                Iniciar Sesión
+              </Link>
+            </li>
+          )}
         </ul>
-        <button className="add-listing" aria-label="Iniciar Sesión">
-          Iniciar Sesión
-        </button>
       </div>
     </nav>
   );
 };
 
 export default memo(Navbar);
+

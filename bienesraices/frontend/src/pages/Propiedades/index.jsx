@@ -58,7 +58,7 @@ const Propiedades = () => {
     setFilteredProperties(filtered);
   };
 
-  if (loading) return <p>Cargando propiedades...</p>;
+  if (loading) return <p></p>;
   if (error) return <p>{error}</p>;
 
   return (
