@@ -1,5 +1,6 @@
+/* Hero Section */
 :root {
-  --hero-height: 80vh;
+  --hero-height: 100vh; /* Cambiado a ocupar toda la pantalla */
   --hero-min-height: 600px;
   --text-color: #fff;
   --overlay-color: rgba(0, 0, 0, 0.5);
@@ -65,20 +66,8 @@
   line-height: 1.6;
 }
 
-.search-bar {
-  position: absolute;
-  bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 1rem;
-  background-color: #fff;
-  padding: 1rem;
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
-  z-index: 3;
-  width: var(--search-bar-width);
-  max-width: var(--search-bar-max-width);
+.hero-subtitle {
+  color: #bbb;
 }
 
 /* Responsivo para pantallas pequeñas */

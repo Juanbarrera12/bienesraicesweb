@@ -14,7 +14,7 @@ const Navbar = () => {
     <nav className="navbar" aria-label="Primary navigation">
       <div className="navbar-main">
         <Link to="/" className="logo" aria-label="Inicio">
-          RealState
+          RealEstate
         </Link>
         <button
           className="menu-toggle"

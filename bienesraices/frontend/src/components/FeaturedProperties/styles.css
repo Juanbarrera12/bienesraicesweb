@@ -1,33 +1,33 @@
-
+/* Featured Properties */
 .properties-area {
   text-align: center;
   padding: 5rem 2rem;
-  max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
+  height: 100vh;
+  background-color: #bbdefb;
 }
 
 .propiedades-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Centra las tarjetas */
-  gap: 20px; /* Espaciado entre las tarjetas */
-  margin: 0 auto; /* Asegura que el contenedor esté centrado */
-  padding: 20px; /* Opcional: agrega un poco de relleno */
-  z-index: 10000;
+  justify-content: center;
+  gap: 20px;
+  margin: 0 auto;
+  padding: 20px;
 }
-/* Ajustes para el contenedor de tarjetas si es necesario */
+
 .property-card {
-  flex: 1 1 calc(33.33% - 40px); /* Asegura 3 columnas con espacio entre tarjetas */
-  max-width: 400px; /* Limita el tamaño máximo si es necesario */
+  flex: 1 1 calc(33.33% - 40px);
+  max-width: 400px;
   box-sizing: border-box;
-  margin: 10px; /* Espaciado adicional si es necesario */
+  margin: 10px;
 }
 
 .property-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
-
 
 /* Contenedor de la imagen de la propiedad destacada */
 .featured-property-image-container {
@@ -92,6 +92,17 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-bottom: 0.8rem;
+}
+#featured-properties  {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+p {
+  color: #666;
+  font-size: 1.5rem;
+  line-height: 1.6;
 }
 
 /* Estilo Responsivo para propiedades destacadas */

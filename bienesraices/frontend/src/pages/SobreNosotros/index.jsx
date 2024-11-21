@@ -1,80 +1,107 @@
 // index.jsx
-import React from 'react';
-import { FaWhatsapp, FaFacebook, FaEnvelope } from 'react-icons/fa';
+import React, { useEffect } from 'react'; // Asegúrate de importar useEffect aquí
+import { FaHandshake, FaUsers, FaBullseye, FaWhatsapp, FaFacebook, FaEnvelope } from 'react-icons/fa';
 import Navbar from "../../components/navbar/navbar";
-import './styles.css';
 import Footer from '../../components/Footer/footer';
+import './styles.css';
 
-const RealEstateSection = () => {
+const AboutUs = () => {
+  useEffect(() => {
+    const sections = document.querySelectorAll('.about-section');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible'); // Permite volver a animar si sales y vuelves a entrar
+          }
+        });
+      },
+      { threshold: 0.3 } // La animación se activa cuando el 30% de la sección es visible
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
   return (
     <>
       <Navbar />
-      
+
       {/* Redes Sociales */}
-      <div className="re-social-media">
-        <a href="#whatsapp" className="re-social-button re-whatsapp">
-          <FaWhatsapp className="re-icon" />
+      <div className="social-media-container">
+        <a href="#whatsapp" className="social-button">
+          <FaWhatsapp />
         </a>
-        <a href="#facebook" className="re-social-button re-facebook">
-          <FaFacebook className="re-icon" />
+        <a href="#facebook" className="social-button">
+          <FaFacebook />
         </a>
-        <a href="#email" className="re-social-button re-email">
-          <FaEnvelope className="re-icon" />
+        <a href="#email" className="social-button">
+          <FaEnvelope />
         </a>
       </div>
 
       {/* Sección Principal */}
-      <div className="re-section">
-        
-        {/* Imagen Principal */}
-        <img src="prueba.jpg" alt="Office Interior" className="re-main-image" />
+      <div className="about-us-container">
+        {/* Historia */}
+        <div className="about-section history">
+          <div className="about-content">
+            <h2>Nuestra Historia</h2>
+            <p>
+              Desde nuestros inicios, hemos trabajado arduamente para convertirnos en un referente en el mercado inmobiliario, brindando confianza y resultados a nuestros clientes.
+            </p>
+          </div>
+          <img src="/images/historia.avif" alt="Nuestra Historia" className="about-image" />
+        </div>
 
-        {/* Contenido de Texto */}
-        <div className="re-text-content">
-          <h1>COMPANY Bienes Raíces</h1>
-          <p>
-            Está a tu disposición y ofrece sus servicios relacionados con el sector inmobiliario: transacciones de compra, venta y alquiler.
-          </p>
-          
-          {/* Apartado de Historia */}
-          <h2>Nuestra Historia</h2>
-          <p>
-            Desde nuestra fundación, COMPANY Bienes Raíces ha trabajado arduamente para establecerse como un referente en el mercado inmobiliario. Nuestro compromiso con la calidad y la satisfacción de nuestros clientes ha sido el motor de nuestro éxito a lo largo de los años.
-          </p>
+        {/* Valores */}
+        <div className="about-section values">
+          <div className="about-content">
+            <FaHandshake className="icon" />
+            <h2>Valores Corporativos</h2>
+            <p>
+              Honestidad, transparencia y profesionalismo son los pilares que guían nuestras acciones y relaciones con cada cliente.
+            </p>
+          </div>
+          <img src="/images/valores.jpg" alt="Nuestra Historia" className="about-image" />
+        </div>
 
-          {/* Apartado de Valores */}
-          <h2>Valores Corporativos</h2>
-          <p>
-            Nos caracterizamos por nuestra responsabilidad, honestidad, transparencia, profesionalismo y calidad de atención. Estos valores nos guían en cada transacción y en cada relación con nuestros clientes.
-          </p>
+        {/* Equipo */}
+        <div className="about-section team">
+          <div className="about-content">
+            <FaUsers className="icon" />
+            <h2>Nuestro Equipo</h2>
+            <p>
+              Un grupo de expertos apasionados y dedicados a ayudarte a encontrar la propiedad perfecta para tus necesidades.
+            </p>
+          </div>
+          <img src="/images/equipo.jpg" alt="Nuestro Equipo" className="about-image" />
+        </div>
 
-          {/* Apartado de Equipo */}
-          <h2>Nuestro Equipo</h2>
-          <p>
-            Contamos con un equipo de profesionales altamente capacitados y apasionados, comprometidos en ayudarte a encontrar el lugar perfecto para ti. Creemos que el trabajo en equipo y la atención personalizada son claves para el éxito.
-          </p>
-
-          {/* Apartado de Testimonios */}
-          <h2>Testimonios de Clientes</h2>
-          <p>
-            "Gracias a COMPANY Bienes Raíces, encontré el hogar de mis sueños. Su profesionalismo y dedicación hicieron que el proceso fuera fácil y seguro." - <em>Cliente Satisfecho</em>
-          </p>
-
-          {/* Misión */}
-          <h2>NUESTRA MISIÓN</h2>
-          <p>
-            Brindamos acompañamiento y asistencia de calidad al cliente para llevar a cabo una operación exitosa. Nos caracterizamos por nuestra responsabilidad, honestidad, transparencia, profesionalismo y calidad de atención.
-          </p>
-          <p>
-            <strong>
-              Todos buscan su lugar en el mundo, nuestra misión es ayudarte a encontrar el tuyo.
-            </strong>
-          </p>
+        {/* Misión */}
+        <div className="about-section mission">
+          <div className="about-content">
+            <FaBullseye className="icon" />
+            <h2>Nuestra Misión</h2>
+            <p>
+              Acompañarte en cada paso del proceso, ofreciendo un servicio de calidad para que alcances el éxito en tu transacción inmobiliaria.
+            </p>
+            <p>
+              <strong>Todos buscan su lugar en el mundo, nuestra misión es ayudarte a encontrar el tuyo.</strong>
+            </p>
+          </div>
+          <img src="/images/mision.jpg" alt="Nuestra Historia" className="about-image" />
         </div>
       </div>
+
       <Footer />
     </>
   );
 };
 
-export default RealEstateSection;
+export default AboutUs;
+
+
+
+

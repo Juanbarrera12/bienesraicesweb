@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Inicio from './pages/Inicio/Inicio.jsx';
 import Propiedades from './pages/Propiedades/index.jsx';
@@ -11,6 +11,14 @@ import AdminMsj from './pages/AdminMsj/AdminMessages.jsx';
 import './App.css';
 
 function App() {
+    useEffect(() => {
+        // Deshabilitar la restauración automática del scroll del navegador
+        window.history.scrollRestoration = 'manual';
+
+        // Desplazar al principio de la página al cargar
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <Router>
             <Routes>
@@ -19,7 +27,7 @@ function App() {
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/SobreNosotros" element={<SobreNosotros />} />
                 <Route path="/admin/propiedades" element={<AdministrarPropiedades />} />
-                <Route path="/contact" element={<ContactForm />} /> {/* Agregar la ruta para Contacto */}
+                <Route path="/contact" element={<ContactForm />} />
                 <Route path="/mensajes" element={<AdminMsj />} />
             </Routes>
         </Router>
@@ -27,3 +35,4 @@ function App() {
 }
 
 export default App;
+

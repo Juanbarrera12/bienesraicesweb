@@ -1,34 +1,40 @@
+/* Purchase Process */
 .purchase-process {
-    padding: 4rem 2rem;
-    text-align: center;
-    background-color: #f4f7fb; /* Fondo más claro */
-  }
-  
-  .purchase-process h2 {
-    font-size: 2.2rem;
-    margin-bottom: 2rem;
-    color: #333;
-  }
-  
-  .process-steps {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
-  .step {
-    flex: 1;
-    max-width: 300px;
-    padding: 2rem;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    border-top: 4px solid #4d90fe; /* Línea superior de color */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    text-align: center;
-  }
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: #64b5f6;
+  height: 100vh;
+}
+
+#purchase-process-title {
+  margin-top: 10%;
+}
+
+.purchase-process h2 {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.process-steps {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.step {
+  flex: 1;
+  max-width: 300px;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #4d90fe;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  text-align: center;
+}
   
   .step:hover {
     transform: translateY(-5px);

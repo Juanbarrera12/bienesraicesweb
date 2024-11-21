@@ -8,7 +8,7 @@ const HeroSection = ({ title, subtitle }) => {
       <div className="hero-overlay">
         <div className="hero-text">
           <h1 id="hero-title">{title}</h1>
-          <p>{subtitle}</p>
+          <p className = 'hero-subtitle'>{subtitle}</p>
         </div>
       </div>
     </section>
