@@ -21,7 +21,7 @@ const Login = () => {
 
       if (response.ok) {
         localStorage.setItem("token", data.token); // Guarda el token
-        window.location.href = "http://localhost:3000/";
+        window.location.href = "https://bienesraicesweb-1.onrender.com";
       } else {
         setError(data.message);
       }
